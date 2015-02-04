@@ -169,6 +169,8 @@
 				</form>';
 		}
 	}
+
+	print "hej!";
 ?>
 </body>
 
