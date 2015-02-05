@@ -76,7 +76,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="js/functions.js"></script>
 </head>
 <body>
