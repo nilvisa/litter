@@ -15,7 +15,7 @@ function createPost()
 		{
 			if($pic)
 				{
-					dbAdd("INSERT INTO `litter`.`posts` (`user_id`, `post`, `post_pic`)
+					dbAdd("INSERT INTO litter_posts (user_id, post, post_pic)
 						VALUES('$user_id', '$post', '$pic_name')");
 				}
 			else
@@ -25,7 +25,7 @@ function createPost()
 		}
 		else
 		{
-			dbAdd("INSERT INTO `litter`.`posts` (`user_id`, `post`)
+			dbAdd("INSERT INTO litter_posts (user_id, post)
 			VALUES('$user_id', '$post')");
 		}
 	}
@@ -44,7 +44,7 @@ function postComment($post_id)
 
 		if($comment !== "")
 		{
-			dbAdd("INSERT INTO `litter`.`posts` (`user_id`, `post`, `reply`)
+			dbAdd("INSERT INTO litter_posts (user_id, post, reply)
 			VALUES ('$user_id', '$comment', '$post_id')");
 		}
 		else
@@ -56,19 +56,19 @@ function postComment($post_id)
 
 function getComment($post_id)
 {
-	return dbArray("SELECT * FROM `litter`.`posts` 
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		WHERE `posts`.`reply` = '$post_id'
-	ORDER BY `posts`.`time_stamp`");
+	return dbArray("SELECT * FROM litter_posts 
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE litter_posts.reply = '$post_id'
+	ORDER BY litter_posts.time_stamp");
 }
 
 function getCommentsPost($reply)
 {
-	return dbRow("SELECT * FROM `litter`.`posts` 
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		WHERE `posts`.`post_id` = '$reply'");
+	return dbRow("SELECT * FROM litter_posts 
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE litter_posts.post_id = '$reply'");
 }
 
 function deletePost()
@@ -79,8 +79,8 @@ function deletePost()
 	{
 		$post_id = $_POST['post_id'];		
 
-		dbAdd("DELETE FROM `litter`.`posts`
-			WHERE `post_id` = '$post_id'  AND `user_id` = '$sess_user'");
+		dbAdd("DELETE FROM litter_posts
+			WHERE post_id = '$post_id'  AND user_id = '$sess_user'");
 
 		$comments = getComment($post_id);
 
@@ -90,8 +90,8 @@ function deletePost()
 			{
 				$user_id = $comments['user_id'];
 
-				dbAdd("DELETE FROM `litter`.`posts`
-					WHERE `reply` = '$post_id' AND `user_id` = '$user_id'");
+				dbAdd("DELETE FROM litter_posts
+					WHERE reply = '$post_id' AND user_id = '$user_id'");
 			}
 		}
 	}
@@ -107,8 +107,8 @@ function deleteComment()
 	{
 		$post_id = $_POST['post_id'];
 
-		dbAdd("DELETE FROM `litter`.`posts`
-			WHERE `post_id` = '$post_id' AND `user_id` = '$sess_user'");
+		dbAdd("DELETE FROM litter_posts
+			WHERE post_id = '$post_id' AND user_id = '$sess_user'");
 
 		print "Your comment was successfully trashed!";
 	}
@@ -122,7 +122,7 @@ function recycle()
 	{
 		$post_id = $_POST['post_id'];
 
-		dbAdd("INSERT INTO `litter`.`posts` (`user_id`, `recycle`)
+		dbAdd("INSERT INTO litter_posts (user_id, recycle)
 		VALUES ('$user_id', '$post_id')");
 
 		return "Recycling is good for our planet, good on you!";
@@ -131,10 +131,10 @@ function recycle()
 
 function getRecycledPost($recycle)
 {
-	return dbRow("SELECT * FROM `litter`.`posts`
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		WHERE `post_id` = $recycle");
+	return dbRow("SELECT * FROM litter_posts
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE post_id = $recycle");
 }
 
 

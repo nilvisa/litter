@@ -6,19 +6,19 @@ require_once('funcs.php');
 
 function getAllPosts()
 {
-	return dbArray("SELECT * FROM `litter`.`posts` 
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		ORDER BY `post_id` DESC");
+	return dbArray("SELECT * FROM litter_posts 
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		ORDER BY post_id DESC");
 }
 
 function getUserPosts($user)
 {
-	return dbArray("SELECT * FROM `litter`.`posts` 
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		WHERE `users`.`username` = '$user'
-		ORDER BY `post_id` DESC");
+	return dbArray("SELECT * FROM litter_posts 
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE litter_users.username = '$user'
+		ORDER BY post_id DESC");
 }
 
 function atLink($str)
@@ -37,27 +37,27 @@ function atLink($str)
 
 function findAt($user)
 {
-	return dbArray("SELECT * FROM `litter`.`posts`
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		WHERE `post` LIKE '%$user%'
-		ORDER BY `time_stamp` DESC");
+	return dbArray("SELECT * FROM litter_posts
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE post LIKE '%$user%'
+		ORDER BY litter_posts.time_stamp DESC");
 }
 
 function findHashtag($str)
 {
-	return dbArray("SELECT * FROM `litter`.`posts`
-		INNER JOIN `litter`.`users`
-		ON `posts`.`user_id` = `users`.`user_id`
-		WHERE `post` LIKE '%$str%'
-		ORDER BY `posts`.`time_stamp` DESC");
+	return dbArray("SELECT * FROM litter_posts
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE post LIKE '%$str%'
+		ORDER BY litter_posts.time_stamp DESC");
 }
 
 
 function getProfilePic($user_id, $size)
 {
-	$profile_pic = dbrow("SELECT `profile_pic` FROM `users`
-		WHERE `user_id` = '$user_id'");
+	$profile_pic = dbrow("SELECT profile_pic FROM litter_users
+		WHERE user_id = '$user_id'");
 
 	if(!$profile_pic['profile_pic'])
 	{
@@ -82,9 +82,9 @@ function changeProfilePic()
 
 		if($pic)
 		{	
-			dbAdd("UPDATE `litter`.`users`
-				SET `profile_pic` = '$pic_name'
-				WHERE `user_id` = '$user_id'");
+			dbAdd("UPDATE litter_users
+				SET profile_pic = '$pic_name'
+				WHERE user_id = '$user_id'");
 		}
 		else
 		{
@@ -95,8 +95,8 @@ function changeProfilePic()
 
 function getBG($user_id)
 {
-	$header = dbrow("SELECT `header_pic` FROM `users`
-		WHERE `user_id` = '$user_id'");
+	$header = dbrow("SELECT header_pic FROM litter_users
+		WHERE user_id = '$user_id'");
 
 	if(!$header['header_pic'])
 	{
@@ -121,9 +121,9 @@ function changeBG()
 
 		if($pic)
 		{	
-			dbAdd("UPDATE `litter`.`users`
-				SET `header_pic` = '$pic_name'
-				WHERE `user_id` = '$user_id'");
+			dbAdd("UPDATE litter_users
+				SET header_pic = '$pic_name'
+				WHERE user_id = '$user_id'");
 		}
 		else
 		{
@@ -140,35 +140,35 @@ function follow($id)
 
 	if(isset($_POST['follow']))
 	{
-		dbAdd("INSERT INTO `litter`.`following` (`user_id`, `following`)
+		dbAdd("INSERT INTO litter_following (user_id, following)
 			VALUES ('$sess_user', '$id')");
 	}
 
 	if(isset($_POST['unfollow']))
 	{
-		dbAdd("DELETE FROM `litter`.`following`
-		WHERE `following` = '$id' AND `user_id` = '$sess_user'");
+		dbAdd("DELETE FROM litter_following
+		WHERE following = '$id' AND user_id = '$sess_user'");
 	}			
 }
 
 function getFollowing($user_id)
 {
-	return dbArray("SELECT * FROM `litter`.`following`
-		WHERE `user_id` = '$user_id'
-		ORDER BY `time_stamp` DESC");
+	return dbArray("SELECT * FROM litter_following
+		WHERE user_id = '$user_id'
+		ORDER BY time_stamp DESC");
 }
 
 function getFollowers($user_id)
 {
-	return dbArray("SELECT * FROM `litter`.`following`
-		WHERE `following` = '$user_id'
-		ORDER BY `time_stamp` DESC");
+	return dbArray("SELECT * FROM litter_following
+		WHERE following = '$user_id'
+		ORDER BY time_stamp DESC");
 }
 
 function checkFollowing($user_id, $following)
 {
-	$result = dbRow("SELECT * FROM `litter`.`following`
-		WHERE `user_id` = '$user_id' AND `following` = '$following'");
+	$result = dbRow("SELECT * FROM litter_following
+		WHERE user_id = '$user_id' AND following = '$following'");
 
 	if($result)
 	{

@@ -138,10 +138,7 @@
 			{
 				require_once('atpost.php');
 			}
-		}
-		
-		
-		
+		}		
 	
 	print '</div>';
 	print '<div id="right">';

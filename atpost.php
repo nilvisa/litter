@@ -9,70 +9,75 @@ foreach($post as $post)
 		/*MENTIONED IN A COMMENT*/
 		if($post['reply'] > 0)
 		{	
-			/*WHO AND WHEN MENTIONED*/
-			print '<p><i>'.$post['time_stamp'].', '.atLink($post['username']).' mentioned you in a comment:</i></p>';
-
+			
 			$comments = getComment($post['reply']);
 
 			if(!empty($comments))
 			{
-				foreach($comments as $comments)
-				{
-					if($comments['post'] == $post['post'])
+				print '<div class="postit"><ul>';
+
+					foreach($comments as $comments)
 					{
-						/*THE @_COMMENT*/
-						print '<div class="atcomment">';
-						
-							/*DELETE_BUTTON*/
-							if($sess['user_id'] == $comments['user_id'])
-							{
-								print '<div class="del_comment">';
-									print '<form method="POST">
-											<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-											<input type="submit" name="del_comment" value="Delete" class="button">
+						if($comments['post'] == $post['post'])
+						{
+							/*THE @_COMMENT*/
+							print '<li class="postit atcomment">';
+
+								/*WHO AND WHEN MENTIONED*/
+								print '<p><i>'.$comments['time_stamp'].', '.atLink($comments['username']).' mentioned you in a comment:</i></p>';
+
+							
+								/*DELETE_BUTTON*/
+								if($sess['user_id'] == $comments['user_id'])
+								{
+									print '<div class="del_comment">';
+										print '<form method="POST">
+												<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
+												<input type="submit" name="del_comment" value="Delete" class="button">
+											</form>';
+									print '</div>';
+								}
+								/*END DELETE_BUTTON*/
+
+								getProfilePic($post['user_id'], '50px');
+								print '<h3>'.atLink($comments['username']).':</h3>';
+								print ' "'.atLink($post['post']).'"</p><br><br>';
+
+								/*REPLY_FORM*/
+								print '<form method="POST">
+										<input type="text" name="comment" value="'.$post['username'].'">
+										<input type="submit" name="'.$post['reply'].'" value="Reply" class="button">
 										</form>';
-								print '</div>';
-							}
-							/*END DELETE_BUTTON*/
+								/*END REPLY_FORM*/
 
-							getProfilePic($post['user_id'], '50px');
-							print '<h3>'.atLink($comments['username']).':</h3>';
-							print ' "'.atLink($post['post']).'"</p>';
+							print '</li>';
+							/*END THE @_COMMENT*/
+						}
+						else
+						{
+							print '<li>';
+								/*DELETE_BUTTON*/
+								if($sess['user_id'] == $comments['user_id'])
+								{
+									print '<div class="del_comment">';
+										print '<form method="POST">
+												<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
+												<input type="submit" name="del_comment" value="Delete" class="button">
+											</form>';
+									print '</div>';
+								}
+								/*END DELETE_BUTTON*/
 
-						print '</div>';
-						/*END THE @_COMMENT*/
+								/*COMMENT*/
+								print '<h3>'.atLink($comments['username']).':</h3>';
+								print '<p>'.atLink($comments['post']).'</p>';
+
+							print '</li>';
+						}
 					}
-					else
-					{
-						print '<div class="comment">';
 
-							/*DELETE_BUTTON*/
-							if($sess['user_id'] == $comments['user_id'])
-							{
-								print '<div class="del_comment">';
-									print '<form method="POST">
-											<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-											<input type="submit" name="del_comment" value="Delete" class="button">
-										</form>';
-								print '</div>';
-							}
-							/*END DELETE_BUTTON*/
-
-							/*COMMENT*/
-							print '<i><h3>'.atLink($comments['username']).':</h3>';
-							print '<p>'.atLink($comments['post']).'</p></i>';
-
-						print '</div>';
-					}
-				}
+				print '</ul></div>';
 			}
-
-			/*REPLY_FORM*/
-			print '<form method="POST">
-					<input type="text" name="comment" value="'.$post['username'].'">
-					<input type="submit" name="'.$post['reply'].'" value="Reply" class="button">
-					</form>';
-			/*END REPLY_FORM*/
 			
 			print '<p>on:</p>';
 

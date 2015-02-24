@@ -5,36 +5,36 @@ require_once('connection.php');
 
 function checkUser($user, $pass)
 {
-	return dbRow("SELECT * FROM `litter`.`users` 
-		WHERE `username` = '$user' AND `pass` = '$pass'");
+	return dbRow("SELECT * FROM litter_users 
+		WHERE username = '$user' AND pass = '$pass'");
 }
 
 function getUser($username)
 {
-	return dbRow("SELECT * FROM `litter`.`users` 
-		WHERE `username` = '$username'");
+	return dbRow("SELECT * FROM litter_users 
+		WHERE username = '$username'");
 }
 
 function getSessionUser($user, $user_id)
 {
-	return dbRow("SELECT * FROM `litter`.`users`
-		WHERE `username` = '$user'
-		AND `user_id` = '$user_id'");
+	return dbRow("SELECT * FROM litter_users
+		WHERE username = '$user'
+		AND user_id = '$user_id'");
 }
 
 function goOnline($user, $is)
 {
 	if($is == 1)
 	{
-		dbAdd("UPDATE `litter`.`users`
-			SET `active` = '1'
-			WHERE `username` = '$user'"); 
+		dbAdd("UPDATE litter_users
+			SET active = '1'
+			WHERE username = '$user'"); 
 	}
 	elseif(is == 0)
 	{
-		dbAdd("UPDATE `litter`.`users`
-			SET `active` = '0'
-			WHERE `username` = '$user'");
+		dbAdd("UPDATE litter_users
+			SET active = '0'
+			WHERE username = '$user'");
 	}
 }
 
@@ -65,7 +65,7 @@ function createUser()
 		$pass = md5($pass);
 		$re_pass = filter_var($_POST['re_pass'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$count = dbRow("SELECT COUNT(*) AS count FROM litter.users
+		$count = dbRow("SELECT COUNT(*) AS count FROM litter_users
 			WHERE username = '$username'");
 		
 		if($username == "")
@@ -82,12 +82,12 @@ function createUser()
 
 		else
 		{
-			dbAdd("INSERT INTO `litter`.`users` 
-		(`username`, `f_name`, `l_name`, `email`, `pass`)
+			dbAdd("INSERT INTO litter_users 
+		(username, f_name, l_name, email, pass)
 		VALUES('@$username', '$f_name', '$l_name', '$email', '$pass')");
 
-			$new_id = dbRow("SELECT `user_id` FROM `litter`.`users`
-				WHERE `username` = '@$username'");
+			$new_id = dbRow("SELECT user_id FROM litter_users
+				WHERE username = '@$username'");
 			mkdir('userIMG/' . $new_id['user_id']);
 
 			session_start();
