@@ -36,7 +36,7 @@ foreach($post as $post)
 	{
 		if($post['recycle'] > 0)
 		 {
-		 	print '<div class="post recycled">';
+		 	print '<div class="post paper">';
 		 }
 		else
 		 {
@@ -49,7 +49,7 @@ foreach($post as $post)
 				print '<div class="del_post">';
 					print '<form method="POST">
 							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-							<input type="submit" name="del_post" value="Delete" class="button">
+							<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 						</form>';
 				print '</div>';
 			}
@@ -67,7 +67,7 @@ foreach($post as $post)
 				print '<h4>'.atLink($post['username']).' recycled:</h4>';
 
 				$post = getRecycledPost($recycle);
-				print '<div class="paper">';
+				print '<div class="recycled">';
 				if(!$post)
 				{
 					print "<h2>Sorry, the original litter was trashed</h2>";
@@ -85,7 +85,7 @@ foreach($post as $post)
 
 			if($post['post_pic'])
 			{
-				print '<img src="userIMG/'.$post['user_id'].'/'.$post['post_pic'].'" width="400px">';
+				print '<img src="userIMG/'.$post['user_id'].'/'.$post['post_pic'].'" class="post_img">';
 			}
 			print '<p>'.$post['time_stamp'].'</p>';
 
@@ -96,7 +96,7 @@ foreach($post as $post)
 				print '<div class="recycle">';
 					print '<form method="POST">
 							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-							<input type="submit" name="recycle" value="Recycle" class="button">
+							<button type="submit" name="recycle"><img src="img/recycle.png"> Recycle</button>
 						</form>';
 				print '</div>';
 			}
@@ -140,10 +140,10 @@ foreach($post as $post)
 							/*DELETE_BUTTON*/
 							if($sess['user_id'] == $comments['user_id'])
 							{
-								print '<div class="del_comment">';
+								print '<div class="del_post">';
 									print '<form method="POST">
 											<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-											<input type="submit" name="del_comment" value="Delete" class="button">
+											<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 										</form>';
 								print '</div>';
 							}
@@ -156,7 +156,7 @@ foreach($post as $post)
 						print '</li>';
 					}
 
-				print '</ul></div>';
+				print '</ul></div> <div class="clearfix"></div>';
 			}
 	}
 }

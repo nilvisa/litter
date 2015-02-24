@@ -30,10 +30,10 @@ foreach($post as $post)
 								/*DELETE_BUTTON*/
 								if($sess['user_id'] == $comments['user_id'])
 								{
-									print '<div class="del_comment">';
+									print '<div class="del_post">';
 										print '<form method="POST">
 												<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-												<input type="submit" name="del_comment" value="Delete" class="button">
+												<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 											</form>';
 									print '</div>';
 								}
@@ -59,10 +59,10 @@ foreach($post as $post)
 								/*DELETE_BUTTON*/
 								if($sess['user_id'] == $comments['user_id'])
 								{
-									print '<div class="del_comment">';
+									print '<div class="del_post">';
 										print '<form method="POST">
 												<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-												<input type="submit" name="del_comment" value="Delete" class="button">
+												<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 											</form>';
 									print '</div>';
 								}
@@ -89,7 +89,7 @@ foreach($post as $post)
 				print '<div class="del_post">';
 					print '<form method="POST">
 							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-							<input type="submit" name="del_post" value="Delete" class="button">
+							<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 						</form>';
 				print '</div>';
 			}
@@ -129,7 +129,7 @@ foreach($post as $post)
 				print '<div class="recycle">';
 					print '<form method="POST">
 							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-							<input type="submit" name="recycle" value="Recycle" class="button">
+							<button type="submit" name="recycle"><img src="img/recycle.png"> Recycle</button>
 						</form>';
 				print '</div>';
 			}
@@ -155,7 +155,7 @@ foreach($post as $post)
 				print '<div class="del_post">';
 						print '<form method="POST">
 								<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-								<input type="submit" name="del_post" value="Delete" class="button">
+								<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 							</form>';
 					print '</div>';
 			}
@@ -182,7 +182,7 @@ foreach($post as $post)
 				print '<div class="recycle">';
 					print '<form method="POST">
 							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-							<input type="submit" name="recycle" value="Recycle" class="button">
+							<button type="submit" name="recycle"><img src="img/recycle.png"> Recycle</button>
 						</form>';
 				print '</div>';
 			}
@@ -201,10 +201,10 @@ foreach($post as $post)
 					/*DELETE_BUTTON*/
 					if($sess['user_id'] == $comments['user_id'])
 					{
-						print '<div class="del_comment">';
+						print '<div class="del_post">';
 							print '<form method="POST">
 									<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-									<input type="submit" name="del_comment" value="Delete" class="button">
+									<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
 								</form>';
 						print '</div>';
 					}

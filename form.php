@@ -13,7 +13,7 @@
 
 	if(isset($_SESSION['username'])) 
 	{
-	    header('Location: profile.php');
+	    header('Location: index.php');
 	    die;
 	}
 ?>

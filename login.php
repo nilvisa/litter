@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			$_SESSION['username'] = $user;
 			$_SESSION['user_id'] = $data['user_id'];
 			goOnline($user, 1);
-			header('Location: profile.php');
+			header('Location: index.php');
 		}
 		else
 		{
