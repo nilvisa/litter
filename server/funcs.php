@@ -53,8 +53,7 @@ function isOnline($active)
 
 function createUser()
 {
-
-	if($_POST['register'])
+	if(isset($_POST['register']))
 	{
 		$username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
 		$f_name = filter_var($_POST['f_name'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -79,6 +78,9 @@ function createUser()
 
 		elseif($email === false || $re_email === false)
 			print "This is not a valid e-mail";
+
+		elseif($pass !== md5($re_pass))
+			print "The two passwords didn't match!";
 
 		else
 		{
