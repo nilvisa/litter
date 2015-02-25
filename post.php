@@ -61,10 +61,12 @@ foreach($post as $post)
 			$reusername = $post['username'];
 			if($post['recycle'] > 0)
 			{
+				print '<div class="profile_img">';
 				getProfilePic($post['user_id'], '50px');
-				print '<h3> <a href="profile.php?profile='.$post['username'].'">'.$post['f_name'].' '.$post['l_name'].'</a></h3>';
+				print '</div>';
 				print isOnline($post['active']);
-				print '<h4>'.atLink($post['username']).' recycled:</h4>';
+				print '<h4>'.$post['f_name'].' '.$post['l_name'].'</h4>';
+				print '<h3> '.atLink($post['username']).'</h3><h4> recycled:</h4>';
 
 				$post = getRecycledPost($recycle);
 				print '<div class="recycled">';
@@ -75,20 +77,6 @@ foreach($post as $post)
 				}
 
 			}
-
-			/*POST*/
-			getProfilePic($post['user_id'], '50px');
-			print '<h3> <a href="profile.php?profile='.$post['username'].'">'.$post['f_name'].' '.$post['l_name'].'</a></h3>';
-			print isOnline($post['active']);
-			print '<h4>'.atLink($post['username']).': </h4>';
-			print '<p>'.atLink($post['post']).'</p>';
-
-			if($post['post_pic'])
-			{
-				print '<img src="userIMG/'.$post['user_id'].'/'.$post['post_pic'].'" class="post_img">';
-			}
-			print '<p>'.$post['time_stamp'].'</p>';
-
 
 			/*RECYCLE_BUTTON*/
 			if($post['user_id'] !== $sess['user_id'])
@@ -102,6 +90,22 @@ foreach($post as $post)
 			}
 			/*END RECYCLE_BUTTON*/
 
+			/*POST*/
+			print '<div class="profile_img">';
+			getProfilePic($post['user_id'], '50px');
+			print'</div>';
+			print isOnline($post['active']);
+			print '<h4>'.$post['f_name'].' '.$post['l_name'].' </h4>';
+			print '<h3>'.atLink($post['username']).': </h3>';
+			print '<p class="post_post">'.atLink($post['post']).'</p>';
+
+			if($post['post_pic'])
+			{
+				print '<img src="userIMG/'.$post['user_id'].'/'.$post['post_pic'].'" class="post_img">';
+			}
+			print '<div class="time_stamp"><p>'.printTime($post['time_stamp']).'</p></div>';
+
+
 
 			if($post == getRecycledPost($recycle))
 			{
@@ -112,20 +116,19 @@ foreach($post as $post)
 			}
 			/*END RECYCLED*/
 
-			print '<br><br>';
-
 
 			/*REPLY_FORM*/
-			print '<form method="POST">
+			print '<div class="reply">
+				<form method="POST">
 				<input type="text" name="comment" value="'.$post['username'].'">
 				<input type="submit" name="'.$post['post_id'].'" value="Reply" class="button">
-				</form>';
+				</form>
+				</div>';
 			/*END REPLY_FORM*/
 
-			print '<br><br>';
 
 
-		print '</div>';
+		print '<br></div>';
 
 			$comments = getComment($post['post_id']);
 
@@ -152,7 +155,7 @@ foreach($post as $post)
 							/*COMMENT*/
 							print '<h3> '.atLink($comments['username']).':</h3>';
 							print '<p>'.atLink($comments['post']).'</p>';
-							print '<p class="time_stamp">'.$comments['time_stamp'].'</p>';
+							print '<p class="time_stamp">'.printTime($comments['time_stamp']).'</p>';
 						print '</li>';
 					}
 

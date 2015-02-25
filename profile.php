@@ -28,31 +28,44 @@ include('header.php');
 
 <?php
 		print '<div id="profile">';
-			print '<div id="bg" style="background: url('.getBG($get['user_id']).'); background-size: 100%; background-repeat: no-repeat;">';
+			// print '<div id="bg" style="background: url('.getBG($get['user_id']).')">';
 
 			getProfilePic($get['user_id'], '150px');
-			print '<br><br><br><h2>'.$get['f_name'].' '.$get['l_name'].'</h2>';
-			print isOnline($get['active']);
-			print '<p>'.$get['username'].'</p>';
-			print '<p>Following: '.count($following).'</p>';
-			print '<p>Followers: '.count($followers).'</p>';
+			print '<br>';
+			print '<h2>'.$get['f_name'].' '.$get['l_name'].'</h2>';
+			print '<h3> '.$get['username'].'</h3>';
 
+			isOnline($get['active']);
+
+			if(!$get['active'])
+			{
+				print '<p>(Last here: '.printTime($get['last_in']).')</p>';
+			}
+			
 			if($sess['user_id'] !== $get['user_id'])
 			{
 				if(checkFollowing($sess['user_id'], $get['user_id']))
 				{
 					print '<form method="POST">
-								<input type="submit" name="unfollow" value="Unfollow" class="button">
+								<button type="submit" name="unfollow" class="button">Unfollow</button>
 							</form>';
 				}
 				else
 				{
 					print '<form method="POST">
-								<input type="submit" name="follow" value="Follow" class="button">
+								<button type="submit" name="follow" class="button">Follow</button>
 						</form>';
 				}
 			}
-			print '<a href="profile.php?profile=at'.$sess['username'].'">Where you have been mentioned</a>';
+			print '<p>Following: '.count($following).'</p>';
+			print '<p>Followers: '.count($followers).'</p>';
+
+			if($sess['user_id'] == $get ['user_id'])
+			{
+				print '<br><a href="profile.php?profile=at'.$sess['username'].'">See where you have been mentioned</a>';
+			}
+
+
 		print '</div>';
 
 
@@ -71,7 +84,6 @@ include('header.php');
 			}			
 		print '</div>';
 ?>
-	</div>
 
 </body>
 

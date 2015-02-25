@@ -86,6 +86,7 @@ if(isset($_GET['tag']))
 	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="js/functions.js"></script>
 </head>
 <body>
@@ -95,8 +96,8 @@ if(isset($_GET['tag']))
 	<div id="get_user">
 		<h2>
 <?php
-		getProfilePic($sess['user_id'], 'auto'); 
-		print '<a href="profile.php?profile='.$sess['username'].'">'.$sess['username'].'</a>';
+		getProfilePic($sess['user_id'], 45); 
+		print '<div id="user"><a href="profile.php?profile='.$sess['username'].'">'.$sess['username'].'</a></div>';
 ?>
 		</h2>
 	</div>
@@ -108,4 +109,8 @@ if(isset($_GET['tag']))
 
 <div id="logo">
 	<h1><a href="index.php">litter</a></h1>
+</div>
+
+<div class="scrollToTop">
+	<a href="#"><img src="img/back_top.png"></a>
 </div>

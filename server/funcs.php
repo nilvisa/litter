@@ -42,11 +42,11 @@ function isOnline($active)
 {
 	if($active == 1)
 	{
-		print '<span class="bullet green">.</span>'; 
+		print '<p class="online green">(online)</p>'; 
 	}
 	else
 	{
-		print '<span class="bullet">.</span>'; 
+		print '<p class="bullet">.</p>'; 
 	}
 }
 
@@ -101,6 +101,59 @@ function createUser()
 	{
 		print "Something went wrong... Please try again later!";
 	}
+}
+
+function printTime($time_stamp)
+{
+	$time = time();
+	$now = date('Y-m-d H:i:s');
+
+	$years = substr($now, 0, 4);
+	$months = substr($now, 5, 2);
+	$days = substr($now, 8, 2);
+	$hrs = substr($now, 11, 2);
+	$mins = substr($now, 14, 2);
+
+	$Tyears = substr($time_stamp, 0, 4);
+	$Tmonths = substr($time_stamp, 5, 2);
+	$Tdays = substr($time_stamp, 8, 2);
+	$Thrs = substr($time_stamp, 11, 2);
+	$Tmins = substr($time_stamp, 14, 2);
+
+	if($years - $Tyears == 0)
+		if($months - $Tmonths  == 0)
+			if($days - $Tdays  == 0)
+				if($hrs - $Thrs  == 0)
+					if($mins - $Tmins  == 0)
+						$result = 'Just now';
+					else
+					{
+						if($mins - $Tmins > 1) {$result = $mins - $Tmins.' minutes ago';}
+						else {$result = $mins - $Tmins.' minute ago';}
+					}						
+				else
+					{
+						if($hrs - $Thrs > 1) {$result = $hrs - $Thrs.' hours ago';}
+						else {$result = $hrs - $Thrs.' hour ago';}
+					}
+			else
+				{
+					if($days - $Tdays > 1) {$result = $days - $Tdays.' days ago';}
+					else {$result = $days - $Tdays.' day ago';}
+				}
+		else
+		{
+			if($months - $Tmonths > 1) {$result = $months - $Tmonths.' months ago';}
+			else {$result = $months - $Tmonths.' month ago';}
+		}
+	else
+	{
+		if($years - $Tyears > 1) {$result = $years - $Tyears.' years ago';}
+		else {$result = $years - $Tyears.' year ago';}
+	}
+
+	return $result;
+
 }
 
 

@@ -68,7 +68,7 @@ function getProfilePic($user_id, $size)
 		$pic = 'userIMG/'.$user_id.'/'.$profile_pic['profile_pic'];
 	}
 	
-	return print '<img src="' .$pic. '" width="' .$size. '">';
+	return print '<img src="' .$pic. '" height="' .$size. '">';
 	
 
 	

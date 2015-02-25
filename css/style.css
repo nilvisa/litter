@@ -52,6 +52,7 @@ a:hover {
 button {
 	font-family: 'Freight', arial, sans-serif;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 a:hover, button:hover, .button:hover {
@@ -103,6 +104,13 @@ a:hover, button:hover, .button:hover {
 		line-height: 10px;
 	}
 
+#user {
+	position: relative;
+	top: -12px;
+	left: 5px;
+	display: inline-block;
+}
+
 #logout {
 	position: absolute;
 	right: 10px;
@@ -113,6 +121,9 @@ a:hover, button:hover, .button:hover {
 	margin: 0px 20px;
 }
 
+#post_it {
+	z-index: 1;
+}
 
 .post_it{
 	position: fixed;
@@ -121,9 +132,12 @@ a:hover, button:hover, .button:hover {
 	width: 400px;
 	height: 365px;
 	background: url('../img/postit.png');
-	padding: 50px;
-	-webkit-box-sizing: border-box;
+	overflow: hidden;
+	z-index: 1;
 }
+	.post_it p {
+		margin: 50px;
+	}
 
 #logo {
 	position: relative;
@@ -138,7 +152,14 @@ a:hover, button:hover, .button:hover {
 		color: #fff;
 	}
 
-/* FORMS */
+.scrollToTop {
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
+	display: none;
+}
+
+/* LITTER-FORM */
 
 input, textarea{
 	width: 90%;
@@ -169,6 +190,7 @@ input, textarea{
 	-moz-box-shadow: 3px 3px 10px rgba(33,33,33,.2);
  	-webkit-box-shadow: 3px 3px 10px rgba(33,33,33,.2);
   	box-shadow: 3px 3px 10px rgba(33,33,33,.2);
+  	cursor: pointer;
 }
 	.button:hover {
 		background: #eaddd5;
@@ -178,8 +200,9 @@ input, textarea{
 	position: fixed;
 	top: 70px;
 	left: 20px;
-	width: 400px;
+	width: 300px;
 	float: left;
+	z-index: 0;
 }
 
 #counter {
@@ -199,15 +222,13 @@ div.fakefile {
 }
 
 div.fakefile input[type=button] {
-    /* enough width to completely overlap the real hidden file control */
-    cursor: pointer;
     width: 148px;
 }
 
 div.fileinputs input.file {
     position: relative;
     text-align: right;
-    -moz-opacity:0 ;
+    -moz-opacity: 0;
     filter:alpha(opacity: 0);
     opacity: 0;
     z-index: 2;
@@ -240,7 +261,22 @@ div.fileinputs input.file {
 }
 	.post h3 {
 		display: inline;
+		vertical-align: middle;
 	}
+	.post h4 {
+		display: inline;
+		vertical-align: middle;
+	}
+
+	.post p.post_post {
+		margin: 20px;
+	}
+
+.profile_img {
+	display: inline;
+	float: left;
+	margin-right: 10px;
+}
 
 .post_img {
 	width: 99%;
@@ -261,7 +297,9 @@ div.fileinputs input.file {
 
 
 .recycle {
-	margin-top: 25px;
+	height: 1px;
+	text-align: right;
+	margin: 3px;
 }
 	.recycle button{
 		width: 50px;
@@ -276,15 +314,27 @@ div.fileinputs input.file {
 
 
 .bullet{
-	display: inline;
-	font-size: 85px;
-	line-height: 15px;
-	color: gray;
+	font-size: 18px;
+	color: #fff;
 }
 	.green{
-		color: green;
+		font-size: 18px;
+		color: #056916;
 	}
 
+.time_stamp {
+	text-align: right;
+	margin: 5px;
+}
+
+.reply input{
+	width: 70%;
+	margin: 5px;
+}
+
+.reply .button {
+	width: 50px;
+}
 
 /* COMMENT */
 
@@ -312,8 +362,8 @@ p.time_stamp {
 div.postit {
 	position: relative;
 	height: auto;
-	top: -50px;
-	margin-bottom: -50px;
+	top: -60px;
+	margin-bottom: -60px;
 	float: left;
 }
 
@@ -384,9 +434,61 @@ div.postit {
 		width: 90%;
 	}
 
+	.recycled .recycle {
+		margin: 20px;
+	}
+
+	.recycled .time_stamp {
+		margin-right: 25px;
+	}
 
 
+/* PROFILE-PAGE */
 
+#profile {
+position: fixed;
+	top: 80px;
+	right: 30px;
+	width: 400px;
+	text-align: right
+}
+	div#profile h2 {
+		display: inline;
+		vertical-align: middle;
+	}
+
+	div#profile h3 {
+		display: inline;
+		vertical-align: middle;
+	}
+
+	div#profile p {
+		font-weight: 600;
+	}
+
+	div#profile p.bullet {
+		display: none;
+	}
+	div#profile p.green {
+		font-size: 20px;
+		margin: 10px;
+	}
+
+	div#profile .button {
+		margin-right: 0px;
+	}
+
+	div#profile a:hover {
+		color: #fff;
+	}
+
+#bg{
+	position: relative;
+	width: 400px;
+	height: 200px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
 
 /* EDIT-PAGE */
 
@@ -398,17 +500,6 @@ div.postit {
 #change_header {
 	width: 400px;
 	float: left;
-}
-
-#profile {
-	width: 400px;
-	float: left;
-}
-
-#bg{
-	position: relative;
-	width: 400px;
-	height: 200px;
 }
 
 
