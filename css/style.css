@@ -435,7 +435,21 @@ div.postit {
 	margin: 20px auto;
 	text-align: center;
 }
-	div#login_form h2 {
-		position: relative;
-		top: 50%;
+
+
+/* REGISTER */
+
+#register {
+	width: 580px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+#register_form {
+	margin-top: 50px;
+}
+
+	#register_form input {
+		width: 250px;
+		float: left;
 	}

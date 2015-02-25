@@ -6,22 +6,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Register</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>Litter</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+	<script src="js/functions.js"></script>
 </head>
 <body>
 
-	<form action="register.php" method="POST">
-		<input type="text" name="username" value="" placeholder="Username"><br>
-		<input type="text" name="f_name" value="" placeholder="First Name"><br>
-		<input type="text" name="l_name" value="" placeholder="Last Name"><br>
-		<input type="email" name="email" value="" placeholder="E-mail"><br>
-		<input type="email" name="re_email" value="" placeholder="Rewrite E-mail"><br>
-		<input type="password" name="pass" value="" placeholder="Password"><br>
-		<input type="password" name="re_pass" value="" placeholder="Rewrite Password"><br><br>
-		<input type="submit" name="register" value="Register">
-	</form>
+<div id="register">
 
-<br><br>
+	<div id="logo">
+		<h1><a href="index.php">litter</a></h1>
+	</div>
+
+	<div id="register_form">
+		<h2>Create an accont!</h2>
+
+		<form action="register.php" method="POST">
+			<input type="text" name="username" value="" placeholder="Username">
+
+			<div class="clearfix"></div>
+
+			<input type="text" name="f_name" value="" placeholder="First Name">
+			<input type="text" name="l_name" value="" placeholder="Last Name">
+			<input type="email" name="email" value="" placeholder="E-mail">
+			<input type="email" name="re_email" value="" placeholder="Rewrite E-mail">
+			<input type="password" name="pass" value="" placeholder="Password">
+			<input type="password" name="re_pass" value="" placeholder="Rewrite Password">
+			
+			<div class="clearfix"></div>
+			<button type="submit" name="register" class="button">Register</button>
+		</form>
+	</div>
 
 <?php
 
@@ -31,6 +48,7 @@
 	}
 
 ?>
+</div>
 		
 </body>
 </html>
