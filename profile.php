@@ -9,29 +9,21 @@ include('header.php');
 	<div id="litter_form">
 		<form method="POST" enctype="multipart/form-data" name="post_litter">
 			<textarea onKeyPress=check_length(this.form); onKeyDown=check_length(this.form);
-			 rows="5" cols="50" name="post" placeholder="Litter some..."></textarea><br>
+			 rows="5" cols="50" name="post" placeholder="Litter some..."></textarea>
 			 <div id="counter"><input size="1" value="140" name="text_num"></div>
-			 <br>
-			<input type="file" name="post_pic"> Add a picture<br>
-			<input type="submit" name="litter" value="GO!" class="button">
+
+			 <div class="fileinputs">
+	       		<input type="file" name="post_pic" class="file">
+
+	        	<div class="fakefile">
+	            	<input type="button" value="Add a picture">
+	        	</div>
+	    	</div>
+			
+			<button type="submit" name="litter" class="button">GO!</button>
 		</form>
 	</div>
 
-
-	<div id="change_profile">
-		<form method="POST" enctype="multipart/form-data">
-			<input type="file" name="profile_pic"> Change profile pic!<br>
-			<input type="submit" name="profile_pic" value="Change!" class="button">
-		</form>
-	</div>
-
-
-	<div id="change_header">
-		<form method="POST" enctype="multipart/form-data">
-			<input type="file" name="header_pic"> Change header pic!<br>
-			<input type="submit" name="header_pic" value="Change!" class="button">
-		</form>
-	</div>
 
 
 <?php

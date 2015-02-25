@@ -78,11 +78,14 @@ if(isset($_GET['tag']))
 
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
-	<link rel="icon" href="img/favicon.ico" type="image/ico" sizes="16x16">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 	<script src="js/functions.js"></script>
 </head>
 <body>
@@ -98,5 +101,5 @@ if(isset($_GET['tag']))
 	print '</div>';
 
 	print '<div id="logo">';
-		print '<a href=""><h1>litter</h1></a>';
+		print '<a href="index.php"><h1>litter</h1></a>';
 	print '</div>';
