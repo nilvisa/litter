@@ -90,16 +90,22 @@ if(isset($_GET['tag']))
 </head>
 <body>
 		
-<?php
-	print '<div id="header">';
-		print '<h2>';
-			getProfilePic($sess['user_id'], '35px'); 
-			print '<a href="profile.php?profile='.$sess['username'].'">'.$sess['username'].'</a>';
-		print '</h2>';
-		
-		print '<p><a href="logout.php">Logga ut</a></p>';
-	print '</div>';
 
-	print '<div id="logo">';
-		print '<a href="index.php"><h1>litter</h1></a>';
-	print '</div>';
+<div id="header">
+	<div id="get_user">
+		<h2>
+<?php
+		getProfilePic($sess['user_id'], 'auto'); 
+		print '<a href="profile.php?profile='.$sess['username'].'">'.$sess['username'].'</a>';
+?>
+		</h2>
+	</div>
+
+	<div id="logout">
+		<p><a href="logout.php">Log out</a></p>
+	</div>
+</div>
+
+<div id="logo">
+	<h1><a href="index.php">litter</a></h1>
+</div>
