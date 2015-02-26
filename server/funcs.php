@@ -156,6 +156,12 @@ function printTime($time_stamp)
 
 }
 
+function whosOnline()
+{
+	return dbArray("SELECT * FROM litter_users
+		WHERE active = 1");
+}
+
 
 
 

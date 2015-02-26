@@ -29,3 +29,29 @@ print '<div id="wrapper">';
 	require_once('post.php');
 
 print '</div>';
+
+
+print '<div id="whos_online">';
+	$online = whosOnline();
+
+	print "<h3>Who's here now:</h3>";
+
+	if(count($online) == 1)
+	{
+		print "It's only you here...";
+	}
+	else
+	{
+		foreach($online as $online)
+		{
+			if($online['user_id'] !== $sess['user_id'])
+			{
+				print '<a href="profile.php?profile='.$online['username'].'" title="'.$online['username'].'">'.getProfilePic($online['user_id'], '50px').'</a>';
+			}		
+		}
+	}
+print '</div>';
+
+include('footer.php');
+
+?>

@@ -61,9 +61,7 @@ foreach($post as $post)
 			$reusername = $post['username'];
 			if($post['recycle'] > 0)
 			{
-				print '<div class="profile_img">';
-				getProfilePic($post['user_id'], '50px');
-				print '</div>';
+				print '<div class="profile_img">'.getProfilePic($post['user_id'], '50px').'</div>';
 				print isOnline($post['active']);
 				print '<h4>'.$post['f_name'].' '.$post['l_name'].'</h4>';
 				print '<h3> '.atLink($post['username']).'</h3><h4> recycled:</h4>';
@@ -91,9 +89,7 @@ foreach($post as $post)
 			/*END RECYCLE_BUTTON*/
 
 			/*POST*/
-			print '<div class="profile_img">';
-			getProfilePic($post['user_id'], '50px');
-			print'</div>';
+			print '<div class="profile_img">'.getProfilePic($post['user_id'], '50px').'</div>';
 			print isOnline($post['active']);
 			print '<h4>'.$post['f_name'].' '.$post['l_name'].' </h4>';
 			print '<h3>'.atLink($post['username']).': </h3>';
@@ -146,7 +142,7 @@ foreach($post as $post)
 								print '<div class="del_post">';
 									print '<form method="POST">
 											<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-											<button type="submit" name="del_post"><img src="img/trashicon.png"></button>
+											<button type="submit" name="del_comment"><img src="img/trashicon.png"></button>
 										</form>';
 								print '</div>';
 							}

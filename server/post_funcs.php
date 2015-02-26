@@ -11,28 +11,34 @@ function createPost()
 		$pic_name = $img['name'];
 		$pic = checkIMG($img, 'userIMG/' . $user_id);
 
-		if($pic_name)
+		if($post !== "")
 		{
-			if($pic)
+			if($pic_name)
+			{
+				if($pic)
+					{
+						dbAdd("INSERT INTO litter_posts (user_id, post, post_pic)
+							VALUES('$user_id', '$post', '$pic_name')");
+
+						print "Your litter vas successfully posted!";
+					}
+				else
 				{
-					dbAdd("INSERT INTO litter_posts (user_id, post, post_pic)
-						VALUES('$user_id', '$post', '$pic_name')");
+					print $error = "Your picture was not in a correct IMG-format...";
 				}
+			}
 			else
 			{
-				print $error = "Your picture was not in a correct IMG-format...";
-			}
+				dbAdd("INSERT INTO litter_posts (user_id, post)
+				VALUES('$user_id', '$post')");
+			}	
 		}
 		else
 		{
-			dbAdd("INSERT INTO litter_posts (user_id, post)
-			VALUES('$user_id', '$post')");
-		}
+			print $error = "Something went wrong... Please try again later!";
+		}		
 	}
-	else
-	{
-		print $error = "Something went wrong... Please try again later!";
-	}
+	
 }
 
 function postComment($post_id)
@@ -46,11 +52,16 @@ function postComment($post_id)
 		{
 			dbAdd("INSERT INTO litter_posts (user_id, post, reply)
 			VALUES ('$user_id', '$comment', '$post_id')");
+
+			$msg = "Your comment was successfully posted";
+
 		}
 		else
 		{
-			print "Something went wrong...";
-		}		
+			$msg = "Something went wrong...";
+		}
+
+		return $msg;		
 	}
 }
 
@@ -94,9 +105,9 @@ function deletePost()
 					WHERE reply = '$post_id' AND user_id = '$user_id'");
 			}
 		}
-	}
 
-	print "Your post was successfully trashed!";
+		return "Your post was successfully trashed!";
+	}
 }
 
 function deleteComment()
@@ -110,7 +121,7 @@ function deleteComment()
 		dbAdd("DELETE FROM litter_posts
 			WHERE post_id = '$post_id' AND user_id = '$sess_user'");
 
-		print "Your comment was successfully trashed!";
+		return "Your comment was successfully trashed!";
 	}
 }
 
@@ -139,10 +150,3 @@ function getRecycledPost($recycle)
 
 
 
-// function sincePosted()
-// {
-// 	$nowdate = date('y-m-d');
-// 	$nowtime = time('h-m-s');
-
-// 	print $nowdate . $nowtime;
-// }

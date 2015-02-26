@@ -1,17 +1,18 @@
 @font-face {
     font-family: 'Freight';
-    src: url('GraublauWeb.eot?') format('eot'),
+    src: url('fonts/FreightSansCmpPro-Light.otf') format('truetype');
+/*    	url('GraublauWeb.eot?') format('eot'),
     	url('webfont.eot?#iefix') format('embedded-opentype'),
-    	url('GraublauWeb.woff') format('woff'),
-    	url('fonts/FreightSansCmpPro-Light.otf') format('truetype');
+    	url('GraublauWeb.woff') format('woff');*/
 }
 
 @font-face {
     font-family: 'Manus';
-    src: url('GraublauWeb.eot?') format('eot'),
+    src: url('fonts/MNS_TRIAL.otf') format('truetype');
+  /*  	url('GraublauWeb.eot?') format('eot'),
     	url('webfont.eot?#iefix') format('embedded-opentype'), 
-    	url('GraublauWeb.woff') format('woff'), 
-    	url('fonts/MNS_TRIAL.otf') format('truetype');
+    	url('GraublauWeb.woff') format('woff'), */
+    	
 }
 
 *{
@@ -53,6 +54,8 @@ button {
 	font-family: 'Freight', arial, sans-serif;
 	font-size: 20px;
 	cursor: pointer;
+	outline: none;
+	-webkit-appearance: none;
 }
 
 a:hover, button:hover, .button:hover {
@@ -127,16 +130,20 @@ a:hover, button:hover, .button:hover {
 
 .post_it{
 	position: fixed;
-	top: 50px;
-	left: 50px;
+	top: 100px;
+	left: 100px;
 	width: 400px;
 	height: 365px;
 	background: url('../img/postit.png');
 	overflow: hidden;
 	z-index: 1;
 }
-	.post_it p {
+	.post_it h3 {
 		margin: 50px;
+	}
+
+	.post_it .button {
+		margin-left: 50px;
 	}
 
 #logo {
@@ -233,6 +240,20 @@ div.fileinputs input.file {
     opacity: 0;
     z-index: 2;
 }
+
+/* WHOS ONLINE */
+
+#whos_online {
+	position: fixed;
+	top: 80px;
+	right: 30px;
+	width: 150px;
+	text-align: right;
+}
+	#whos_online h3 {
+		margin-bottom: 10px;
+	}
+
 
 
 /*#main {
@@ -446,11 +467,11 @@ div.postit {
 /* PROFILE-PAGE */
 
 #profile {
-position: fixed;
+	position: fixed;
 	top: 80px;
 	right: 30px;
 	width: 400px;
-	text-align: right
+	text-align: right;
 }
 	div#profile h2 {
 		display: inline;

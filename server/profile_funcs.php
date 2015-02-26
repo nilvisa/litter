@@ -29,7 +29,7 @@ function atLink($str)
 	}
 	if($regex = "/#+([a-zA-Z0-9_-]+)/")
 	{
-		$str = preg_replace($regex, '<a href="profile.php?tag=$1">$0</a>', $str);
+		$str = preg_replace($regex, '<a href="index.php?tag=$1">$0</a>', $str);
 	}
 	
 	return $str;
@@ -68,7 +68,7 @@ function getProfilePic($user_id, $size)
 		$pic = 'userIMG/'.$user_id.'/'.$profile_pic['profile_pic'];
 	}
 	
-	return print '<img src="' .$pic. '" height="' .$size. '">';
+	return '<img src="' .$pic. '" height="' .$size. '">';
 	
 
 	
@@ -88,6 +88,8 @@ function changeProfilePic()
 			dbAdd("UPDATE litter_users
 				SET profile_pic = '$pic_name'
 				WHERE user_id = '$user_id'");
+
+			print "You have a new profile pic, nice!";
 		}
 		else
 		{
@@ -127,6 +129,8 @@ function changeBG()
 			dbAdd("UPDATE litter_users
 				SET header_pic = '$pic_name'
 				WHERE user_id = '$user_id'");
+
+			print "You have a new header pic, nice!";
 		}
 		else
 		{

@@ -3,11 +3,15 @@
 if($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 	
-		print '<div class="post_it">';
+		print '<div class="post_it"><h3>';
 
 		if(isset($_POST['litter']))
 		{
-			createPost();
+			print createPost();
+		}
+		if(isset($_POST['$post_id']))
+		{
+			print postComment();
 		}		
 		if(isset($_POST['profile_pic']))
 		{
@@ -30,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 			print recycle();
 		}
 
-		print '<input type="button" id="hide_btn" value="close">';
+		print '</h3><button type="button" id="hide_btn" class="button">close</button>';
 		print '</div>';		
 
 	}

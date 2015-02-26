@@ -30,7 +30,7 @@ include('header.php');
 		print '<div id="profile">';
 			// print '<div id="bg" style="background: url('.getBG($get['user_id']).')">';
 
-			getProfilePic($get['user_id'], '150px');
+			print getProfilePic($get['user_id'], '150px');
 			print '<br>';
 			print '<h2>'.$get['f_name'].' '.$get['l_name'].'</h2>';
 			print '<h3> '.$get['username'].'</h3>';
@@ -83,29 +83,7 @@ include('header.php');
 				}
 			}			
 		print '</div>';
+
+include('footer.php');
+
 ?>
-
-</body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-	
-		$('#hide_btn').click(function(){
-		$('.post_it').hide();
-		$('#post_it').hide();
-		});
-	});	
-
-	
-		$('#hide_btn2').click(function(){
-		$('#post_it').hide();
-		});
-
-</script>
-
-</html>
-
-	

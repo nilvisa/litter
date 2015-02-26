@@ -24,7 +24,6 @@ if(!getSessionUser($user, $user_id))
 	die;
 }
 
-
 /* MESSAGE POST-IT */
 print '<div id="post_it"></div>';
 
@@ -57,9 +56,9 @@ if(isset($_GET['profile']))
 	}
 	elseif(!$profile == getUser($profile))
 	{
-		print '<div class="post_it">';
+		print '<div class="post_it"><h3>';
 		print "There's no user with that name...";
-		print '</div>';
+		print '</h3><button type="button" id="hide_btn" class="button">close</button></div>';
 	}
 	else
 	{
@@ -86,17 +85,15 @@ if(isset($_GET['tag']))
 	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script src="js/functions.js"></script>
 </head>
 <body>
-		
+
 
 <div id="header">
 	<div id="get_user">
 		<h2>
 <?php
-		getProfilePic($sess['user_id'], 45); 
+		print getProfilePic($sess['user_id'], 45); 
 		print '<div id="user"><a href="profile.php?profile='.$sess['username'].'">'.$sess['username'].'</a></div>';
 ?>
 		</h2>

@@ -4,9 +4,9 @@ function check_length(post_litter)
 	maxLen = 140; 
 	if (post_litter.post.value.length >= maxLen)
 	{
-		var msg = '<p>You have reached the maximum limit of characters allowed';
+		var msg = '<h3>You have reached the maximum limit of characters allowed</h3>';
 		$('#post_it').addClass('post_it')
-					.html(msg+'<br><br><button type="button" id="hide_btn2" class="button">close</button></p>');
+					.html(msg+'<button type="button" id="hide_btn2" class="button">close</button>');
 
 		$('#hide_btn2').click(function(){
 		$('#post_it').hide();
@@ -19,6 +19,21 @@ function check_length(post_litter)
 		post_litter.text_num.value = maxLen - post_litter.post.value.length;
 	}
 }
+
+/* CLOSE POST-IT */
+
+$(document).ready(function(){
+
+	$('#hide_btn').click(function(){
+	$('.post_it').hide();
+	$('#post_it').hide();
+	});
+});	
+
+
+	$('#hide_btn2').click(function(){
+	$('#post_it').hide();
+	});
 
 
 

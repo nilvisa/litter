@@ -19,3 +19,6 @@ include('header.php');
 			<input type="submit" name="header_pic" value="Change!" class="button">
 		</form>
 	</div>
+
+</body>
+</html>
