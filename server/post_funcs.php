@@ -43,33 +43,35 @@ function createPost()
 	
 }
 
-function postComment($post_id)
+function postComment()
 {	
-	if(isset($_POST[$post_id]))
+	if(isset($_POST['postComment']))
 	{
 		$user_id = $_SESSION['user_id'];
 		$comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+		$post_id = $_POST['post_id'];
 
 		if($comment !== "")
 		{
 			dbAdd("INSERT INTO litter_posts (user_id, post, reply)
 			VALUES ('$user_id', '$comment', '$post_id')");
 
-			return "Your comment was successfully posted";
+			return '<h3>Your comment was successfully posted</h3>';
 		}
 		else
 		{
-			return "Something went wrong...";
+			return '<h3>Something went wrong...</h3>';
 		}
 	}
 }
 
-function replyComment($reply_id)
+function replyComment()
 {	
-	if(isset($_POST[$reply_id]))
+	if(isset($_POST['reply']))
 	{
 		$user_id = $_SESSION['user_id'];
 		$comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+		$reply_id = $_POST['reply_id'];
 
 		if($comment !== "")
 		{

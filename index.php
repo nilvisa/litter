@@ -46,7 +46,9 @@ print '<div id="whos_online">';
 		{
 			if($online['user_id'] !== $sess['user_id'])
 			{
+				print '<div class="whos_online">';
 				print '<a href="profile.php?profile='.$online['username'].'" title="'.$online['username'].'">'.getProfilePic($online['user_id'], '50px').'</a>';
+				print '</div>';
 			}		
 		}
 	}

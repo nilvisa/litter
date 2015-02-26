@@ -1,5 +1,4 @@
 <?php
-
 require_once('server/funcs.php');
 require_once('server/profile_funcs.php');
 require_once('server/post_funcs.php');
@@ -25,8 +24,8 @@ if(!getSessionUser($user, $user_id))
 }
 
 /* MESSAGE POST-IT */
-print '<div id="post_it"></div>';
 
+print '<div id="post_it"></div>';
 require_once('request.php');
 
 
@@ -85,6 +84,14 @@ if(isset($_GET['tag']))
 	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+	<!--[if IE]>
+	<style>
+	    #logo {
+		display: none;
+	    }
+	</style>
+	<![endif]-->
+
 </head>
 <body>
 
@@ -105,6 +112,7 @@ if(isset($_GET['tag']))
 </div>
 
 <div id="logo">
+
 	<h1><a href="index.php">litter</a></h1>
 </div>
 

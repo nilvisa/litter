@@ -4,18 +4,17 @@ foreach($post as $post)
 {
 	postComment($post['post_id']);
 
-		print '<div class="post">';
 
 		/*MENTIONED IN A COMMENT*/
 		if($post['reply'] > 0)
-		{	
-			
+		{				
 			$comments = getComment($post['reply']);
 
 			if(!empty($comments))
 			{
+				print '<div class="post">';
 				print '<div class="postit"><ul>';
-
+				
 					foreach($comments as $comments)
 					{
 						if($comments['post'] == $post['post'])
@@ -24,7 +23,7 @@ foreach($post as $post)
 							print '<li class="postit atcomment">';
 
 								/*WHO AND WHEN MENTIONED*/
-								print '<p><i>'.printTime($comments['time_stamp']).', '.atLink($comments['username']).' mentioned you in a comment:</i></p>';
+								print '<p><i>'.printTime($comments['time_stamp']).', '.atLink($comments['username']).' mentioned you in a comment:</i></p><br>';
 
 							
 								/*DELETE_BUTTON*/
@@ -44,12 +43,13 @@ foreach($post as $post)
 								print ' "'.atLink($post['post']).'"</p><br><br>';
 
 								/*REPLY_FORM*/
-								print '<div class="reply">
-										<form method="POST">
-										<input type="text" name="comment" value="'.$post['username'].'">
-										<input type="submit" name="'.$post['reply'].'" value="Reply" class="button">
-										</form>
-										</div>';
+								print '<div class="reply at">
+									<form method="POST" action="#'.$post['post_id'].'">
+									<input type="hidden" name="reply_id" value="'.$post['reply'].'">
+									<input type="text" name="comment" value="'.$post['username'].'">
+									<input type="submit" name="reply" value="Reply" class="button">
+									</form>
+									</div>';
 								/*END REPLY_FORM*/
 
 							print '</li>';
@@ -81,7 +81,7 @@ foreach($post as $post)
 				print '</ul></div>';
 			}
 			
-			print '<p>on:</p>';
+			print '<h3>on:</h3><br><br>';
 
 			$post = getCommentsPost($post['reply']);
 
@@ -137,7 +137,15 @@ foreach($post as $post)
 			}
 			print '<div class="time_stamp"><p>'.printTime($post['time_stamp']).'</p></div>';
 
-
+			/*REPLY_FORM*/
+			print '<div class="reply">
+				<form method="POST" action="#'.$post['post_id'].'">
+				<input type="hidden" name="post_id" value="'.$post['post_id'].'">
+				<input type="text" name="comment" value="'.$post['username'].'">
+				<input type="submit" name="postComment" value="Reply" class="button">
+				</form>
+				</div>';
+			/*END REPLY_FORM*/
 
 			if($post == getRecycledPost($recycle))
 			{
@@ -147,12 +155,16 @@ foreach($post as $post)
 			}
 			/*END RECYCLED*/
 
-			print '<br><br>';
+			print '<br><br></div>';
 		}
 
 		/*MENTIONED IN A POST*/
 		else
 		{
+			print '<div class="post">';
+			/*WHO AND WHEN MENTINED*/
+			print '<p><i>'.printTime($post['time_stamp']).', '.atLink($post['username']).' mentioned you in a post:</i></p><br>';
+
 			/*DELETE_BUTTON*/
 			if($sess['user_id'] == $post['user_id'])
 			{
@@ -165,8 +177,17 @@ foreach($post as $post)
 			}
 			/*END DELETE_BUTTON*/
 
-			/*WHO AND WHEN MENTINED*/
-			print '<p><i>'.printTime($post['time_stamp']).', '.atLink($post['username']).' mentioned you in a post:</i></p>';
+			/*RECYCLE_BUTTON*/
+			if($post['user_id'] !== $sess['user_id'])
+			{
+				print '<div class="recycle">';
+					print '<form method="POST">
+							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
+							<button type="submit" name="recycle"><img src="img/recycle.png"> Recycle</button>
+						</form>';
+				print '</div>';
+			}
+			/*END RECYCLE_BUTTON*/
 			
 			/*POST*/
 			print '<div class="profile_img">'.getProfilePic($post['user_id'], '50px').'</div>';
@@ -179,60 +200,52 @@ foreach($post as $post)
 			{
 				print '<img src="userIMG/'.$post['user_id'].'/'.$post['post_pic'].'" class="post_img">';
 			}
-			print '<p>'.$post['time_stamp'].'</p>';
+			print '<div class="time_stamp"><p>'.printTime($post['time_stamp']).'</p></div>';
 
-			/*RECYCLE_BUTTON*/
-			if($post['user_id'] !== $sess['user_id'])
-			{
-				print '<div class="recycle">';
-					print '<form method="POST">
-							<input type="hidden" name="post_id" value="'.$post['post_id'].'">
-							<button type="submit" name="recycle"><img src="img/recycle.png"> Recycle</button>
-						</form>';
-				print '</div>';
-			}
-			/*END RECYCLE_BUTTON*/
+			/*REPLY_FORM*/
+			print '<div class="reply">
+				<form method="POST" action="#'.$post['post_id'].'">
+				<input type="hidden" name="post_id" value="'.$post['post_id'].'">
+				<input type="text" name="comment" value="'.$post['username'].'">
+				<input type="submit" name="postComment" value="Reply" class="button">
+				</form>
+				</div>';
+			/*END REPLY_FORM*/
 
-			print '<br><br>';
+
+			print '<br></div>';
+
 
 			$comments = getComment($post['post_id']);
 
 			if(!empty($comments))
 			{
-				foreach($comments as $comments)
-				{
-					print '<div class="comment">';
+				print '<div class="postit"><ul>';
 
-					/*DELETE_BUTTON*/
-					if($sess['user_id'] == $comments['user_id'])
+					foreach($comments as $comments)
 					{
-						print '<div class="del_post">';
-							print '<form method="POST">
-									<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
-									<button type="submit" name="del_comment"><img src="img/trashicon.png"></button>
-								</form>';
-						print '</div>';
+						print '<li>';
+
+							/*DELETE_BUTTON*/
+							if($sess['user_id'] == $comments['user_id'])
+							{
+								print '<div class="del_post">';
+									print '<form method="POST" action="#'.$post['post_id'].'">
+											<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
+											<button type="submit" name="del_comment"><img src="img/trashicon.png"></button>
+										</form>';
+								print '</div>';
+							}
+							/*END DELETE_BUTTON*/
+
+							/*COMMENT*/
+							print '<h3> '.atLink($comments['username']).':</h3>';
+							print '<p>'.atLink($comments['post']).'</p>';
+							print '<p class="time_stamp">'.printTime($comments['time_stamp']).'</p>';
+						print '</li>';
 					}
-					/*END DELETE_BUTTON*/
 
-					/*COMMENT*/
-					print '<i><h3>'.atLink($comments['username']).':</h3>';
-					print '<p>'.atLink($comments['post']).'</p></i>';
-					print '</div>';
-				}
+				print '</ul></div> <div class="clearfix"></div>';
 			}
-
-			/*REPLY_FORM*/
-			print '<div class="reply">
-					<form method="POST">
-					<input type="text" name="comment" value="'.$post['username'].'">
-					<input type="submit" name="'.$post['post_id'].'" value="Reply" class="button">
-					</form>
-					</div>';
-			/*END REPLY_FORM*/
-
-			print '<br><br>';
 		}
-
-	print '</div>';	
 }

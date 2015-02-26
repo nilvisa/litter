@@ -8,21 +8,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			print createPost();
 		}
-		if(isset($_POST['$post_id']))
+		if(isset($_POST['postComment']))
 		{
 			print postComment();
 		}
-		if(isset($_POST['$post_id']))
+		if(isset($_POST['reply']))
 		{
 			print replyComment();
 		}		
 		if(isset($_POST['profile_pic']))
 		{
 			print changeProfilePic();
-		}
-		if(isset($_POST['header_pic']))
-		{
-			print changeBG();
 		}
 		if(isset($_POST['del_post']))
 		{

@@ -62,7 +62,8 @@ include('header.php');
 
 			if($sess['user_id'] == $get ['user_id'])
 			{
-				print '<br><a href="profile.php?profile=at'.$sess['username'].'">See where you have been mentioned</a>';
+				print '<br><a href="profile.php?profile=at'.$sess['username'].'">See where you have been mentioned</a><br>';
+				print '<a href="edit.php">Edit your settings</a>';
 			}
 
 

@@ -30,7 +30,6 @@ if($post == getUserPosts($profile))
 
 foreach($post as $post)
 {
-	postComment($post['post_id']);
 
 	if($post['reply'] == 0)
 	{
@@ -43,6 +42,7 @@ foreach($post as $post)
 		 	print '<div class="post">';
 		 }
 
+		 	print '<a name="'.$post['post_id'].'"></a>';
 			/*DELETE_BUTTON*/
 			if($sess['user_id'] == $post['user_id'])
 			{
@@ -116,13 +116,13 @@ foreach($post as $post)
 			/*REPLY_FORM*/
 			print '<div class="reply">
 				<form method="POST" action="#'.$post['post_id'].'">
+				<input type="hidden" name="post_id" value="'.$post['post_id'].'">
 				<input type="text" name="comment" value="'.$post['username'].'">
-				<input type="submit" name="'.$post['post_id'].'" value="Reply" class="button">
+				<input type="submit" name="postComment" value="Reply" class="button">
 				</form>
 				</div>';
 			/*END REPLY_FORM*/
 
-		print '<a name="'.$post['post_id'].'"></a>';
 
 		print '<br></div>';
 
@@ -140,7 +140,7 @@ foreach($post as $post)
 							if($sess['user_id'] == $comments['user_id'])
 							{
 								print '<div class="del_post">';
-									print '<form method="POST">
+									print '<form method="POST" action="#'.$post['post_id'].'">
 											<input type="hidden" name="post_id" value="'.$comments['post_id'].'">
 											<button type="submit" name="del_comment"><img src="img/trashicon.png"></button>
 										</form>';

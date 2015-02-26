@@ -105,7 +105,6 @@ function createUser()
 
 function printTime($time_stamp)
 {
-	$time = time();
 	$now = date('Y-m-d H:i:s');
 
 	$years = substr($now, 0, 4);

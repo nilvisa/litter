@@ -115,31 +115,6 @@ function getBG($user_id)
 	return $pic;
 }
 
-function changeBG()
-{
-	if(isset($_POST['header_pic']))
-	{			
-		$user_id = $_SESSION['user_id'];
-		$img = $_FILES['header_pic'];
-		$pic_name = $img['name'];
-		$pic = checkIMG($img, 'userIMG/' . $user_id);
-
-		if($pic)
-		{	
-			dbAdd("UPDATE litter_users
-				SET header_pic = '$pic_name'
-				WHERE user_id = '$user_id'");
-
-			print "You have a new header pic, nice!";
-		}
-		else
-		{
-			print "Bad file...";
-		}		
-	}	
-}
-
-
 
 function follow($id)
 {	

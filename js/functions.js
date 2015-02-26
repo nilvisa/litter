@@ -26,7 +26,6 @@ $(document).ready(function(){
 
 	$('#hide_btn').click(function(){
 	$('.post_it').hide();
-	$('#post_it').hide();
 	});
 });	
 
