@@ -2,7 +2,6 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
 	{
-	
 		print '<div class="post_it"><h3>';
 
 		if(isset($_POST['litter']))
@@ -12,6 +11,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		if(isset($_POST['$post_id']))
 		{
 			print postComment();
+		}
+		if(isset($_POST['$post_id']))
+		{
+			print replyComment();
 		}		
 		if(isset($_POST['profile_pic']))
 		{

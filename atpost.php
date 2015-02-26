@@ -109,7 +109,7 @@ foreach($post as $post)
 				print '<h3> '.atLink($post['username']).'</h3><h4> recycled:</h4>';
 
 				$post = getRecycledPost($recycle);
-				print '<div class="rePost">';
+				print '<div class="recycled">';
 			}
 
 			/*RECYCLE_BUTTON*/

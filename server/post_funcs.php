@@ -24,18 +24,20 @@ function createPost()
 					}
 				else
 				{
-					print $error = "Your picture was not in a correct IMG-format...";
+					print "Your picture was not in a correct IMG-format...";
 				}
 			}
 			else
 			{
 				dbAdd("INSERT INTO litter_posts (user_id, post)
 				VALUES('$user_id', '$post')");
+
+				print "Your litter vas successfully posted!";
 			}	
 		}
 		else
 		{
-			print $error = "Something went wrong... Please try again later!";
+			print "Something went wrong... Please try again later!";
 		}		
 	}
 	
@@ -53,15 +55,33 @@ function postComment($post_id)
 			dbAdd("INSERT INTO litter_posts (user_id, post, reply)
 			VALUES ('$user_id', '$comment', '$post_id')");
 
-			$msg = "Your comment was successfully posted";
-
+			return "Your comment was successfully posted";
 		}
 		else
 		{
-			$msg = "Something went wrong...";
+			return "Something went wrong...";
 		}
+	}
+}
 
-		return $msg;		
+function replyComment($reply_id)
+{	
+	if(isset($_POST[$reply_id]))
+	{
+		$user_id = $_SESSION['user_id'];
+		$comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+		if($comment !== "")
+		{
+			dbAdd("INSERT INTO litter_posts (user_id, post, reply)
+			VALUES ('$user_id', '$comment', '$reply_id')");
+
+			return "Your comment was successfully posted";
+		}
+		else
+		{
+			return "Something went wrong...";
+		}
 	}
 }
 

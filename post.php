@@ -115,14 +115,14 @@ foreach($post as $post)
 
 			/*REPLY_FORM*/
 			print '<div class="reply">
-				<form method="POST">
+				<form method="POST" action="#'.$post['post_id'].'">
 				<input type="text" name="comment" value="'.$post['username'].'">
 				<input type="submit" name="'.$post['post_id'].'" value="Reply" class="button">
 				</form>
 				</div>';
 			/*END REPLY_FORM*/
 
-
+		print '<a name="'.$post['post_id'].'"></a>';
 
 		print '<br></div>';
 

@@ -23,11 +23,11 @@ function getUserPosts($user)
 
 function atLink($str)
 {
-	if($regex = "/@+[a-zA-Z0-9_-]+/")
+	if($regex = "/@+[a-zA-Z0-9_-å-ä-ö-Å-Ä-Ö-]+/")
 	{
 		$str = preg_replace($regex, '<a href="profile.php?profile=$0">$0</a>', $str);
 	}
-	if($regex = "/#+([a-zA-Z0-9_-]+)/")
+	if($regex = "/#+([a-zA-Z0-9_-å-ä-ö-Å-Ä-Ö-]+)/")
 	{
 		$str = preg_replace($regex, '<a href="index.php?tag=$1">$0</a>', $str);
 	}
