@@ -110,12 +110,20 @@ h2 {
 	width: 70%;
 }
 
-.recycled {
-	/*width: 90%;*/
-	margin: 0px;
-	padding: 0px;
-	/*display: none;*/
+.recycle, .del_post {
+	position: relative;
+	top: -35px;
+	margin-right: 0px;
 }
+
+.recycled {
+	width: 90%;
+	margin: 0px;
+	padding: 20px 0px;
+}
+	.recycled .recycle {
+		display: none;
+	}
 
 .postit ul li{
   width: 180px;
