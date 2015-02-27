@@ -1,3 +1,8 @@
+
+<div class="scrollToTop">
+	<a href="#"><img src="img/back_top.png"></a>
+</div>
+
 </body>
 </html>
 

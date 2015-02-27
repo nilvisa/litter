@@ -67,6 +67,10 @@ include('header.php');
 			print '<p>Following: '.count($following).'</p>';
 			print '<p>Followers: '.count($followers).'</p>';
 
+			// print '<div>';
+			// 	require_once('following.php');
+			// print '</div>';
+
 
 
 			if($sess['user_id'] == $get ['user_id'])

@@ -18,40 +18,47 @@ include('header.php');
         	</div>
     	</div>
 		
-		<button type="submit" name="litter" class="button">GO!</button>
+
+        <button type="submit" name="litter" class="button">GO!</button>
+		
 	</form>
 </div>
 
 <?php
-
-print '<div id="wrapper">';
-
-	require_once('post.php');
-
-print '</div>';
-
 
 print '<div id="whos_online">';
 	$online = whosOnline();
 
 	print "<h3>Who's here now:</h3>";
 
-	if(count($online) == 1)
-	{
-		print "It's only you here...";
-	}
-	else
-	{
-		foreach($online as $online)
-		{
-			if($online['user_id'] !== $sess['user_id'])
+	print '<div id="online_img">';
+
+			if(count($online) == 1)
 			{
-				print '<div class="whos_online">';
-				print '<a href="profile.php?profile='.$online['username'].'" title="'.$online['username'].'">'.getProfilePic($online['user_id'], '50px').'</a>';
+				print "It's only you here...";
+			}
+			else
+			{
+				print '<div id="online_container">';
+				foreach($online as $online)
+				{
+					if($online['user_id'] !== $sess['user_id'])
+					{
+						print '<div class="whos_online">';
+						print '<a href="profile.php?profile='.$online['username'].'" title="'.$online['username'].'">'.getProfilePic($online['user_id'], '50px').'</a>';
+						print '</div>';
+					}		
+				}
 				print '</div>';
-			}		
-		}
-	}
+			}
+		print '</div>';
+	print '</div>';
+
+
+print '<div id="wrapper">';
+
+	require_once('post.php');
+
 print '</div>';
 
 include('footer.php');

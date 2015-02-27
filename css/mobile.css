@@ -1,0 +1,114 @@
+@media only screen and (max-width: 800px) 	{
+
+.post_it {
+	top: 80px;
+	left: 0px;
+}
+
+#get_user {
+	left: 0px;
+	margin: 0px;
+}
+
+#logout {
+	padding: 0px;
+	margin: 0px;
+}
+
+#logo {
+	margin: 0px auto;
+	height: 100px;
+}
+
+.scrollToTop {
+	right: 20px;
+	left: auto;
+}
+
+#litter_form {
+	position: relative;
+	width: 90%;
+	float: none;
+	padding: 0px;
+	margin: 0px;
+}
+	#litter_form textarea {
+		height: 70px;
+	}
+
+	.fileinputs {
+		display: inline;
+		float: left;
+	}
+
+	div.fakefile input[type=button] {
+    width: 120px;
+	}
+
+	#litter_form button {
+		position: absolute;
+		right: 10px;
+	}
+
+
+#whos_online {
+	position: relative;
+	left: 0px;
+	top: 75px;
+	right: auto;
+	width: 100%;
+	height: 120px;
+	text-align: center;
+}
+
+#online_img {
+	overflow: scroll;
+	text-align: left;
+	overflow-y: hidden;
+}
+
+#online_container {
+	width: 10000px;
+}
+
+#wrapper {
+	position: relative;
+	width: 90%;
+	top: 80px;
+	margin: 0px;
+	padding: 0px;
+	/*display: none;*/
+}
+
+.post {
+	width: 100%;
+	margin-right: 0px;
+	margin-left: 7px;	
+}
+
+	.post h4{
+		font-size: 20px;
+	}
+
+.reply input {
+	width: 70%;
+}
+
+.recycled {
+	/*width: 90%;*/
+	margin: 0px;
+	padding: 0px;
+	/*display: none;*/
+}
+
+
+.postit ul li{
+  width: 180px;
+}
+
+
+
+
+
+
+}

@@ -82,6 +82,7 @@ if(isset($_GET['tag']))
 	<meta name="viewport" content="width=device-width" />
 	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/mobile.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 </head>
 <body>
@@ -102,10 +103,9 @@ if(isset($_GET['tag']))
 	</div>
 </div>
 
+
 <div id="logo">
 	<h1><a href="index.php">litter</a></h1>
 </div>
 
-<div class="scrollToTop">
-	<a href="#"><img src="img/back_top.png"></a>
-</div>
+
