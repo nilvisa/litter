@@ -85,7 +85,7 @@ include('header.php');
 
 		print '<div id="wrapper">';
 
-			if($post == getAllPosts() || $post == getUserPosts($profile) || $post == findHashtag($fulltag))
+			if($post == getAllPosts() || $post == getUserPosts($profile))
 			{
 				require_once('post.php');
 			}
@@ -94,6 +94,10 @@ include('header.php');
 				if($post == findAt($sess['username']))
 				{
 					require_once('atpost.php');
+				}
+				else
+				{
+					require_once('tagpost.php');
 				}
 			}			
 		print '</div>';

@@ -68,7 +68,7 @@ if(isset($_GET['profile']))
 /* CREATE TAGS */
 if(isset($_GET['tag']))
 {
-	$tag = preg_replace('#[^a-z0-9_]#i', '', $_GET["tag"]);
+	$tag = preg_replace('#[^a-z0-9_-å-ä-ö-Å-Ä-Ö-]#i', '', $_GET["tag"]);
 	$fulltag = "#".$tag;		
 	$post = findHashtag($fulltag);
 }

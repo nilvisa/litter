@@ -170,5 +170,14 @@ function getRecycledPost($recycle)
 		WHERE post_id = $recycle");
 }
 
+function findHashtag($str)
+{
+	return dbArray("SELECT * FROM litter_posts
+		INNER JOIN litter_users
+		ON litter_posts.user_id = litter_users.user_id
+		WHERE post LIKE '%$str%'
+		ORDER BY litter_posts.time_stamp DESC");
+}
+
 
 

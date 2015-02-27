@@ -5,7 +5,7 @@ foreach($post as $post)
 	postComment($post['post_id']);
 
 
-		/*MENTIONED IN A COMMENT*/
+		/*TAG IN A COMMENT*/
 		if($post['reply'] > 0)
 		{				
 			$comments = getComment($post['reply']);
@@ -19,13 +19,10 @@ foreach($post as $post)
 					{
 						if($comments['post'] == $post['post'])
 						{
-							/*THE @_COMMENT*/
+							/*THE TAG_COMMENT*/
 							print '<li class="postit atcomment">';
 
-								/*WHO AND WHEN MENTIONED*/
-								print '<p><i>'.printTime($comments['time_stamp']).', '.atLink($comments['username']).' mentioned you in a comment:</i></p><br>';
-
-							
+														
 								/*DELETE_BUTTON*/
 								if($sess['user_id'] == $comments['user_id'])
 								{
@@ -38,22 +35,13 @@ foreach($post as $post)
 								}
 								/*END DELETE_BUTTON*/
 
-								print '<div class="profile_img">'.getProfilePic($post['user_id'], '50px').'</div>';
 								print '<h3>'.atLink($comments['username']).':</h3>';
-								print '<p> "'.atLink($post['post']).'"</p><br><br>';
-
-								/*REPLY_FORM*/
-								print '<div class="reply at">
-									<form method="POST" action="#'.$post['post_id'].'">
-									<input type="hidden" name="reply_id" value="'.$post['reply'].'">
-									<input type="text" name="comment" value="'.$post['username'].'">
-									<input type="submit" name="reply" value="Reply" class="button">
-									</form>
-									</div>';
-								/*END REPLY_FORM*/
+								print '<p>'.atLink($post['post']).'</p>';
+								print '<p class="time_stamp">'.printTime($comments['time_stamp']).'</p>';
+					
 
 							print '</li>';
-							/*END THE @_COMMENT*/
+							/*END THE TAG_COMMENT*/
 						}
 						else
 						{
@@ -73,6 +61,7 @@ foreach($post as $post)
 								/*COMMENT*/
 								print '<h3>'.atLink($comments['username']).':</h3>';
 								print '<p>'.atLink($comments['post']).'</p>';
+								print '<p class="time_stamp">'.printTime($comments['time_stamp']).'</p>';
 
 							print '</li>';
 						}
@@ -158,13 +147,11 @@ foreach($post as $post)
 			print '<br><br></div>';
 		}
 
-		/*MENTIONED IN A POST*/
+		/*TAG IN A POST*/
 		else
 		{
 			print '<div class="post">';
-			/*WHO AND WHEN MENTINED*/
-			print '<p><i>'.printTime($post['time_stamp']).', '.atLink($post['username']).' mentioned you in a post:</i></p><br>';
-
+	
 			/*DELETE_BUTTON*/
 			if($sess['user_id'] == $post['user_id'])
 			{

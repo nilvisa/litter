@@ -44,15 +44,6 @@ function findAt($user)
 		ORDER BY litter_posts.time_stamp DESC");
 }
 
-function findHashtag($str)
-{
-	return dbArray("SELECT * FROM litter_posts
-		INNER JOIN litter_users
-		ON litter_posts.user_id = litter_users.user_id
-		WHERE post LIKE '%$str%'
-		ORDER BY litter_posts.time_stamp DESC");
-}
-
 
 function getProfilePic($user_id, $size)
 {

@@ -57,7 +57,14 @@ print '<div id="whos_online">';
 
 print '<div id="wrapper">';
 
-	require_once('post.php');
+	if($post == findHashtag($fulltag))
+	{
+		require_once('tagpost.php');
+	}
+	else
+	{
+		require_once('post.php');
+	}
 
 print '</div>';
 
