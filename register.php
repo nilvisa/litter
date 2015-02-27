@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/mobile.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 	<script src="js/functions.js"></script>
 </head>
