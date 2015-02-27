@@ -89,47 +89,67 @@ function changeProfilePic()
 				SET profile_pic = '$pic_name'
 				WHERE user_id = '$user_id'");
 
-			print "You have a new profile pic, nice!";
+			return "You have a new profile pic, nice!";
 		}
 		else
 		{
-			print "Bad file...";
+			return "Bad file...";
 		}		
 	}	
 }
 
-function getBG($user_id)
+function changeInfo()
 {
-	$header = dbrow("SELECT header_pic FROM litter_users
-		WHERE user_id = '$user_id'");
-
-	if(!$header['header_pic'])
+	if(isset($_POST['changeInfo']))
 	{
-		$pic = 'userIMG/bg.jpg';
+		$user_id = $_SESSION['user_id'];
+		$f_name = filter_var($_POST['f_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+		$l_name = filter_var($_POST['l_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+		$email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+		
+		if($f_name == "" || $l_name == "" || $email == "")
+			print "<h4>You can't change anything to just blank...</h4>";
+
+		elseif($email === false)
+			print "<h4>This is not a valid e-mail</h4>";
+
+		else
+		{
+			dbAdd("UPDATE litter_users 
+				SET f_name = '$f_name', l_name = '$l_name', email = '$email'
+					WHERE user_id = '$user_id'");
+
+			return "Your changes were made!";	
+		}			
 	}
 	else
 	{
-		$pic = 'userIMG/'.$user_id.'/'.$header['header_pic'];
+		return "Something went wrong... Please try again later!";
 	}
-
-	return $pic;
 }
 
 
-function follow($id)
+function follow()
 {	
 	$sess_user = $_SESSION['user_id'];
+	$id = $_POST['id'];
+	$username = dbRow("SELECT username FROM litter_users
+		WHERE user_id = '$id'");
 
 	if(isset($_POST['follow']))
 	{
 		dbAdd("INSERT INTO litter_following (user_id, following)
 			VALUES ('$sess_user', '$id')");
+
+		return "You're now following ".$username['username'];
 	}
 
 	if(isset($_POST['unfollow']))
 	{
 		dbAdd("DELETE FROM litter_following
 		WHERE following = '$id' AND user_id = '$sess_user'");
+
+		return "You just stopped following ".$username['username'];
 	}			
 }
 

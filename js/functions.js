@@ -27,12 +27,19 @@ $(document).ready(function(){
 	$('#hide_btn').click(function(){
 	$('.post_it').hide();
 	});
-});	
 
+	$(".post_it").delay(1900).queue(function(next) {
+  	$(this).hide();
+  	next();
+	});
+
+});	
 
 	$('#hide_btn2').click(function(){
 	$('#post_it').hide();
 	});
+
+
 
 
 

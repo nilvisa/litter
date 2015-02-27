@@ -28,7 +28,6 @@ include('header.php');
 
 <?php
 		print '<div id="profile">';
-			// print '<div id="bg" style="background: url('.getBG($get['user_id']).')">';
 
 			print getProfilePic($get['user_id'], '150px');
 			print '<br>';
@@ -41,24 +40,34 @@ include('header.php');
 			{
 				print '<p>(Last here: '.printTime($get['last_in']).')</p>';
 			}
-			
+
+
+			/* FOLLOW */
+
+			$following = getFollowing($get['user_id']);
+			$followers = getFollowers($get['user_id']);
+						
 			if($sess['user_id'] !== $get['user_id'])
 			{
 				if(checkFollowing($sess['user_id'], $get['user_id']))
 				{
 					print '<form method="POST">
+								<input type="hidden" name="id" value="'.$get['user_id'].'">
 								<button type="submit" name="unfollow" class="button">Unfollow</button>
 							</form>';
 				}
 				else
 				{
 					print '<form method="POST">
+								<input type="hidden" name="id" value="'.$get['user_id'].'">
 								<button type="submit" name="follow" class="button">Follow</button>
 						</form>';
 				}
 			}
 			print '<p>Following: '.count($following).'</p>';
 			print '<p>Followers: '.count($followers).'</p>';
+
+
 
 			if($sess['user_id'] == $get ['user_id'])
 			{

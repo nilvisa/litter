@@ -92,7 +92,7 @@ button {
 	-webkit-appearance: none;
 }
 
-a:hover, button:hover, .button:hover {
+a, a:hover, button, button:hover, .button, .button:hover {
 	-webkit-transition: 0.2s ease-in-out;
     -moz-transition: 0.2s ease-in-out;
     -ms-transition: 0.2s ease-in-out;
@@ -162,22 +162,28 @@ a:hover, button:hover, .button:hover {
 	z-index: 1;
 }
 
-.post_it, .post_it2 {
+.post_it {
 	position: fixed;
-	top: 100px;
+	top: 170px;
 	left: 100px;
-	width: 400px;
-	height: 365px;
+	width: 300px;
+	height: 274px;
 	background: url('../img/postit.png');
 	overflow: hidden;
 	z-index: 1;
 }
-	.post_it h3, .post_it2 h3 {
+	.post_it h3 {
 		margin: 50px;
 	}
 
-	.post_it .button, .post_it2 .button{
-		margin-left: 50px;
+	.post_it .button {
+		position: absolute;
+		bottom: 30px;
+		right: 30px;
+		background: none;
+		-moz-box-shadow: none;
+	 	-webkit-box-shadow: none;
+	  	box-shadow: none;
 	}
 
 #logo {
@@ -191,6 +197,10 @@ a:hover, button:hover, .button:hover {
 	#logo a {
 		text-decoration: none;
 		color: #fff;
+	}
+
+	#logo a:hover {
+		color: #000;
 	}
 
 	.ie #logo {
@@ -283,7 +293,7 @@ div.fileinputs input.file {
 /* WHOS ONLINE */
 
 #whos_online {
-	position: fixed;
+	position: absolute;
 	top: 80px;
 	right: 30px;
 	width: 170px;
@@ -312,12 +322,6 @@ div.fileinputs input.file {
 		transform: translate(-50%,-50%);
 	}
 
-
-
-/*#main {
-	width: 100%;
-}
-*/
 
 #wrapper{
 	width: 400px;
@@ -573,17 +577,32 @@ div.postit {
 	background-repeat: no-repeat;
 }
 
+
 /* EDIT-PAGE */
 
-#change_profile {
-	width: 400px;
-	float: left;
+#edit_wrapper {
+	width: 600px;
+	margin: 10px auto;
+	text-align: center;
 }
 
-#change_header {
-	width: 400px;
+#change_profile {
 	float: left;
+	width: 300px;
+	text-align: left;
 }
+	#change_profile h4 {
+		margin-left: 10px;
+	}
+
+#changePic {
+	float: right;
+	width: 200px;
+	text-align: left;
+}
+	#changePic img{
+	margin: 10px;
+	}
 
 
 /* LOGIN */
@@ -619,8 +638,13 @@ div.postit {
 	text-align: center;
 }
 
+	#register #logo {
+		top: 30px;
+		margin: 0px;
+	}
+
 #register_form {
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 	#register_form input {

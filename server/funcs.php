@@ -67,20 +67,20 @@ function createUser()
 		$count = dbRow("SELECT COUNT(*) AS count FROM litter_users
 			WHERE username = '$username'");
 		
-		if($username == "")
-			print "Username!";
+		if($username == "" || $f_name == "" || $l_name == "" || $pass == "")
+			print "<h4>You didn't complete the form!</h4>";
 
 		elseif($count['count'] > 0)
-			print "This username is allreday taken!";
+			print "<h4>This username is allreday taken!</h4>";
 
 		elseif($email !== $re_email)
-			print "The two e-mails didn't match!";
+			print "<h4>The two e-mails didn't match!</h4>";
 
 		elseif($email === false || $re_email === false)
-			print "This is not a valid e-mail";
+			print "<h4>This is not a valid e-mail</h4>";
 
 		elseif($pass !== md5($re_pass))
-			print "The two passwords didn't match!";
+			print "<h4>The two passwords didn't match!</h4>";
 
 		else
 		{
@@ -99,7 +99,7 @@ function createUser()
 	}
 	else
 	{
-		print "Something went wrong... Please try again later!";
+		print "<h4>Something went wrong... Please try again later!</h4>";
 	}
 }
 

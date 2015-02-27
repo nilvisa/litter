@@ -20,6 +20,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			print changeProfilePic();
 		}
+		if(isset($_POST['changeInfo']))
+		{
+			print changeInfo();
+		}
 		if(isset($_POST['del_post']))
 		{
 			print deletePost();
@@ -31,6 +35,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		if(isset($_POST['recycle']))
 		{
 			print recycle();
+		}
+		if(isset($_POST['follow']))
+		{
+			print follow();
+		}
+		if(isset($_POST['unfollow']))
+		{
+			print follow();
 		}
 
 		print '</h3><button type="button" id="hide_btn" class="button">close</button>';

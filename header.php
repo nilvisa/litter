@@ -23,6 +23,7 @@ if(!getSessionUser($user, $user_id))
 	die;
 }
 
+
 /* MESSAGE POST-IT */
 
 print '<div id="post_it"></div>';
@@ -35,9 +36,6 @@ $get = getUser($user);
 $post = getAllPosts();
 $profile = 'all';
 $fulltag = '';
-follow($get['user_id']);
-$following = getFollowing($get['user_id']);
-$followers = getFollowers($get['user_id']);
 
 
 /* WHICH POSTS TO SHOW*/
@@ -66,6 +64,7 @@ if(isset($_GET['profile']))
 	}		
 }
 
+
 /* CREATE TAGS */
 if(isset($_GET['tag']))
 {
@@ -84,14 +83,6 @@ if(isset($_GET['tag']))
 	<title>Litter</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-	<!--[if IE]>
-	<style>
-	    #logo {
-		display: none;
-	    }
-	</style>
-	<![endif]-->
-
 </head>
 <body>
 
@@ -112,7 +103,6 @@ if(isset($_GET['tag']))
 </div>
 
 <div id="logo">
-
 	<h1><a href="index.php">litter</a></h1>
 </div>
 
