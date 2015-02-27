@@ -26,7 +26,16 @@ h2 {
 	line-height: 50px;
 	}
 
+#search_form {
+	position: absolute;
+	right: 40px;
+}
+	#search_form input {
+		width: 70px;
+	}
+
 #logout {
+	top: 12px;
 	padding: 0px;
 	margin: 0px;
 }

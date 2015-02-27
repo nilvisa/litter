@@ -154,6 +154,20 @@ a, a:hover, button, button:hover, .button, .button:hover {
 	margin: 0px 20px;
 }
 
+#search_form {
+	position: absolute;
+	right: 80px;
+}
+	#search_form input {
+		margin: 0px;
+		width: 100px;
+		height: 45px;
+		-webkit-appearance: none;
+		-moz-box-shadow: none;
+	 	-webkit-box-shadow: none;
+	  	box-shadow: none;
+	}
+
 #post_it {
 	z-index: 1;
 }

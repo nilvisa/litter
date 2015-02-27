@@ -14,6 +14,13 @@ function getAllPosts()
 
 function getUserPosts($user)
 {
+	$find = '@';
+	$check = stripos($user, $find);
+	if($check === false)
+	{
+		$user = $find.$user;
+	}
+	
 	return dbArray("SELECT * FROM litter_posts 
 		INNER JOIN litter_users
 		ON litter_posts.user_id = litter_users.user_id
@@ -37,6 +44,13 @@ function atLink($str)
 
 function findAt($user)
 {
+	$find = '@';
+	$check = stripos($user, $find);
+	if($check === false)
+	{
+		$user = $find.$user;
+	}
+
 	return dbArray("SELECT * FROM litter_posts
 		INNER JOIN litter_users
 		ON litter_posts.user_id = litter_users.user_id

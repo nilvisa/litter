@@ -11,6 +11,13 @@ function checkUser($user, $pass)
 
 function getUser($username)
 {
+	$find = '@';
+	$check = stripos($username, $find);
+	if($check === false)
+	{
+		$username = $find.$username;
+	}
+
 	return dbRow("SELECT * FROM litter_users 
 		WHERE username = '$username'");
 }
@@ -160,6 +167,8 @@ function whosOnline()
 	return dbArray("SELECT * FROM litter_users
 		WHERE active = 1");
 }
+
+
 
 
 

@@ -98,6 +98,13 @@ if(isset($_GET['tag']))
 		</h2>
 	</div>
 
+	<div id="search_form">
+		<form method="GET" action="profile.php">
+			<input type="text" name="profile" placeholder="Find @">
+			<!-- <button type="submit" class="button">Find user</button> -->
+		</form>
+	</div>
+
 	<div id="logout">
 		<p><a href="logout.php">Log out</a></p>
 	</div>
