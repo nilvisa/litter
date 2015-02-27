@@ -6,7 +6,7 @@ include('header.php');
 
 <div id="main">
 
-	<div id="litter_form">
+	<div id="litter_form" class="mobile_hide">
 		<form method="POST" enctype="multipart/form-data" name="post_litter">
 			<textarea onKeyPress=check_length(this.form); onKeyDown=check_length(this.form);
 			 rows="5" cols="50" name="post" placeholder="Litter some..."></textarea>

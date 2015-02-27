@@ -1,5 +1,13 @@
 @media only screen and (max-width: 800px) 	{
 
+.mobile_hide {
+	display: none;
+}
+
+h2 {
+	font-size: 26px;
+}
+
 .post_it {
 	top: 80px;
 	left: 0px;
@@ -9,6 +17,9 @@
 	left: 0px;
 	margin: 0px;
 }
+	#get_user h2 {
+	line-height: 50px;
+	}
 
 #logout {
 	padding: 0px;
@@ -16,7 +27,7 @@
 }
 
 #logo {
-	margin: 0px auto;
+	margin: 0px 15px 0px 0px;
 	height: 100px;
 }
 
@@ -101,9 +112,15 @@
 	/*display: none;*/
 }
 
-
 .postit ul li{
   width: 180px;
+}
+
+#profile {
+	position: relative;
+	right: auto;
+	width: 100%;
+	text-align: center;
 }
 
 
