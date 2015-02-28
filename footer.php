@@ -5,6 +5,8 @@
 
 <br><br><br><br>
 
+<div id="footer"><p>by <a href="http://lovisa.li" target="new">Lovisa Nilsson</a></p></div>
+
 </body>
 </html>
 

@@ -698,3 +698,9 @@ div.following, div.followers {
 ::-webkit-scrollbar-thumb { height: 50px; background-color: #fff; border-radius: 3px;}
 ::-webkit-scrollbar-corner { background-color: none;}
 ::-webkit-resizer { background-color: none;}
+
+#footer {
+	width: 100%;
+	text-align: center;
+	margin: 10px;
+}
