@@ -700,6 +700,7 @@ div.following, div.followers {
 ::-webkit-resizer { background-color: none;}
 
 #footer {
+	clear: both;
 	width: 100%;
 	text-align: center;
 	margin: 10px;
