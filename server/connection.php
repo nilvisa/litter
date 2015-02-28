@@ -86,7 +86,12 @@ function checkIMG($img, $pic_name, $dir)
 			if($size < 5000000)
 			{
 				move_uploaded_file($temp, $dir . '/' . $name);
-				correctImageOrientation($dir . '/' . $name);
+
+				if($img['type'] == IMG_JPG)
+				{
+					correctImageOrientation($dir . '/' . $name);
+				}
+
 				return true;
 			}
 

@@ -144,54 +144,56 @@ function deleteUser()
 		$sess_username = $_SESSION['username'];
 
 		/* DEL POSTS */
-		return getUserPosts($_SESSION['username']);
+		$posts = getUserPosts($_SESSION['username']);
 
-		// foreach($posts as $post)
-		// {
-		// 	$post_id = $post['post_id'];
+		foreach($posts as $post)
+		{
+			$post_id = $post['post_id'];
 
-		// 	dbAdd("DELETE FROM litter_posts
-		// 	WHERE post_id = '$post_id' AND user_id = '$sess_id'");
+			dbAdd("DELETE FROM litter_posts
+			WHERE post_id = '$post_id' AND user_id = '$sess_id'");
 
-		// 	$comments = getComment($post_id);
+			$comments = getComment($post_id);
 
-		// 	if(!empty($comments))
-		// 	{
-		// 		foreach($comments as $comments)
-		// 		{
-		// 			$user_id = $comments['user_id'];
+			if(!empty($comments))
+			{
+				foreach($comments as $comments)
+				{
+					$user_id = $comments['user_id'];
 
-		// 			dbAdd("DELETE FROM litter_posts
-		// 				WHERE reply = '$post_id' AND user_id = '$user_id'");
-		// 		}
-		// 	}
-		// }		
+					dbAdd("DELETE FROM litter_posts
+						WHERE reply = '$post_id' AND user_id = '$user_id'");
+				}
+			}
+		}		
 
 		/* CLEAN FOLDER */
-		// $dir = 'userIMG/'.$sess_id.'/'; 
-		// // Open the directory
-		// $dirHandle = opendir($dir); 
-		// // Loop over all of the files in the folder
-		// while ($file = readdir($dirHandle)) 
-		// { 
-		//     // If $file is NOT a directory remove it
-		//     if(!is_dir($file)) 
-		//     { 
-		//         unlink ("$dir"."$file"); // unlink() deletes the files
-		//     }
-		// }
-		// // Close the directory
-		// closedir($dirHandle);
+		$dir = 'userIMG/'.$sess_id.'/'; 
+		// Open the directory
+		$dirHandle = opendir($dir); 
+		// Loop over all of the files in the folder
+		while ($file = readdir($dirHandle)) 
+		{ 
+		    // If $file is NOT a directory remove it
+		    if(!is_dir($file)) 
+		    { 
+		        unlink ("$dir"."$file"); // unlink() deletes the files
+		    }
+		}
+		// Close the directory
+		closedir($dirHandle);
 
-		// /* REMOVE FOLDER */
-		// rmdir($dir);
+		/* REMOVE FOLDER */
+		rmdir($dir);
 
 		/* DEL USER */
-		// dbAdd("DELETE FROM litter_users
-		// WHERE user_id = '$sess_id' AND username = '$sess_username'");
-
-		// session_start();
-		// $_SESSION['error'] = 'Your account has been deleted...';
+		dbAdd("DELETE FROM litter_users
+		WHERE user_id = '$sess_id' AND username = '$sess_username'");
+		
+		session_destroy();
+		session_start();
+		$_SESSION['error'] = 'Your account has been deleted...';
+		header('Location: form.php');
 	}
 }
 
