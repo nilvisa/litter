@@ -338,7 +338,11 @@ div.fileinputs input.file {
 #wrapper{
 	width: 450px;
 	margin: 0px auto;
-}
+}	
+	div#wrapper h2 {
+		text-align: center;
+		margin: auto;
+	}
 
 
 /* POST */
@@ -615,6 +619,17 @@ div.postit {
 }
 	#changePic img{
 	margin: 10px;
+	}
+
+#delete_user {
+	clear: both;
+	padding-top: 30px;
+	width: 100%;
+	text-align: center;
+}
+	.delete:hover {
+		color: #fff;
+		background: #e1455f;
 	}
 
 

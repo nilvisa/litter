@@ -44,6 +44,11 @@ include('header.php');
 			<input type="submit" name="profile_pic" value="Change!" class="button">
 		</form>
 	</div>
+
+	<div id="delete_user">
+		<a href="delete_user.php" class="button delete">Delete your profile</a>
+	</div>
+
 </div>
 
 
