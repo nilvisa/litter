@@ -73,12 +73,13 @@ function dbAdd($sql)
 }
 
 
-function checkIMG($img, $dir)
+function checkIMG($img, $pic_name, $dir)
 {
-	$name = $img['name'];
+	$name = $pic_name;
 	$size = $img['size'];
 	$temp = $img['tmp_name'];
 	$error = $img['error'];
+	
 
 	if(@getimagesize($temp))
 		{

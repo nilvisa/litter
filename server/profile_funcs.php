@@ -83,10 +83,12 @@ function changeProfilePic()
 {
 	if(isset($_POST['profile_pic']))
 	{			
+		$random = rand().rand();
+
 		$user_id = $_SESSION['user_id'];
 		$img = $_FILES['profile_pic'];
-		$pic_name = $img['name'];
-		$pic = checkIMG($img, 'userIMG/' . $user_id);
+		$pic_name = $random = rand() . rand().$img['name'];
+		$pic = checkIMG($img, $pic_name, 'userIMG/' . $user_id);
 
 		if($pic)
 		{	

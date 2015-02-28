@@ -5,11 +5,13 @@ function createPost()
 {
 	if(isset($_POST['litter']))
 	{
+		$random = rand().rand();
+
 		$user_id = $_SESSION['user_id'];
 		$post = filter_var($_POST['post'], FILTER_SANITIZE_SPECIAL_CHARS);
 		$img = $_FILES['post_pic'];
-		$pic_name = $img['name'];
-		$pic = checkIMG($img, 'userIMG/' . $user_id);
+		$pic_name = $random.$img['name'];
+		$pic = checkIMG($img, $pic_name, 'userIMG/' . $user_id);
 
 		if($post !== "")
 		{
