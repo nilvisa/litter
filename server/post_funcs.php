@@ -52,7 +52,7 @@ function postComment()
 	{
 		$user_id = $_SESSION['user_id'];
 		$comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
-		$post_id = $_POST['post_id'];
+		$post_id = (int)$_POST['post_id'];
 
 		if($comment !== "")
 		{
@@ -74,7 +74,7 @@ function replyComment()
 	{
 		$user_id = $_SESSION['user_id'];
 		$comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
-		$reply_id = $_POST['reply_id'];
+		$reply_id = (int)$_POST['reply_id'];
 
 		if($comment !== "")
 		{
@@ -113,7 +113,7 @@ function deletePost()
 
 	if(isset($_POST['del_post']))
 	{
-		$post_id = $_POST['post_id'];		
+		$post_id = (int)$_POST['post_id'];		
 
 		dbAdd("DELETE FROM litter_posts
 			WHERE post_id = '$post_id'  AND user_id = '$sess_user'");
@@ -142,7 +142,7 @@ function deleteComment()
 
 	if(isset($_POST['del_comment']))
 	{
-		$post_id = $_POST['post_id'];
+		$post_id = (int)$_POST['post_id'];
 
 		dbAdd("DELETE FROM litter_posts
 			WHERE post_id = '$post_id' AND user_id = '$sess_user'");
@@ -158,7 +158,7 @@ function recycle()
 
 	if(isset($_POST['recycle']))
 	{
-		$post_id = $_POST['post_id'];
+		$post_id = (int)$_POST['post_id'];
 
 		dbAdd("INSERT INTO litter_posts (user_id, recycle)
 		VALUES ('$user_id', '$post_id')");

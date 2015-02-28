@@ -200,7 +200,7 @@ function deleteUser()
 function follow()
 {	
 	$sess_user = $_SESSION['user_id'];
-	$id = $_POST['id'];
+	$id = (int)$_POST['id'];
 	$username = dbRow("SELECT username FROM litter_users
 		WHERE user_id = '$id'");
 
