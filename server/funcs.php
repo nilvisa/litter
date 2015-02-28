@@ -152,17 +152,17 @@ function printTime($time_stamp)
 			else
 				{
 					if($days - $Tdays > 1) {$result = $days - $Tdays.' days ago';}
-					else {$result = $days - $Tdays.' day ago';}
+					else {$result = 'yesterday';}
 				}
 		else
 		{
 			if($months - $Tmonths > 1) {$result = $months - $Tmonths.' months ago';}
-			else {$result = $months - $Tmonths.' month ago';}
+			else {$result = 'last month';}
 		}
 	else
 	{
 		if($years - $Tyears > 1) {$result = $years - $Tyears.' years ago';}
-		else {$result = $years - $Tyears.' year ago';}
+		else {$result = 'last year';}
 	}
 
 	return $result;
