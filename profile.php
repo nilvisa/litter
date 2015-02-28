@@ -81,7 +81,7 @@ require_once('server/header.php');
 
 					if(count($following) == 0)
 					{
-						print "None, go follow someone!";
+						print $get['username']." isn't following anyone...";
 					}
 					else
 					{
@@ -110,7 +110,7 @@ require_once('server/header.php');
 
 					if(count($following) == 0)
 					{
-						print "None, go follow someone!";
+						print "None, follow ".$get['username']."!";
 					}
 					else
 					{
