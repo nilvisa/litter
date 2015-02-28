@@ -126,7 +126,7 @@ function checkIMG($img, $pic_name, $dir)
 			{
 				move_uploaded_file($temp, $dir . '/' . $name);
 
-				if($img['type'] == IMG_JPG)
+				if($img['type'] == 'IMG_JPG' || $img['type'] == 'image/jpeg')
 				{
 					correctImageOrientation($dir . '/' . $name);
 				}
