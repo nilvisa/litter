@@ -69,6 +69,7 @@ function createUser()
 		$re_email = filter_var($_POST['re_email'], FILTER_VALIDATE_EMAIL);
 		$pass = filter_var($_POST['pass'], FILTER_SANITIZE_SPECIAL_CHARS);
 		$pass = md5($pass);
+		/* OBS att jag är medveten om att bara md5 inte är bra... */
 		$re_pass = filter_var($_POST['re_pass'], FILTER_SANITIZE_SPECIAL_CHARS);
 
 		$count = dbRow("SELECT COUNT(*) AS count FROM litter_users

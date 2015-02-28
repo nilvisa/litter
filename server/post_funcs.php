@@ -10,20 +10,21 @@ function createPost()
 		$user_id = $_SESSION['user_id'];
 		$post = filter_var($_POST['post'], FILTER_SANITIZE_SPECIAL_CHARS);
 		$img = $_FILES['post_pic'];
-		$pic_name = $random.$img['name'];
-		$pic = checkIMG($img, $pic_name, 'userIMG/' . $user_id);
-
+		
 		if($post !== "")
 		{
-			if($pic_name)
+			if($img['name'])
 			{
-				if($pic)
-					{
-						dbAdd("INSERT INTO litter_posts (user_id, post, post_pic)
-							VALUES('$user_id', '$post', '$pic_name')");
+				$pic_name = $random.$img['name'];
+				$pic = checkIMG($img, $pic_name, 'userIMG/' . $user_id);
 
-						print "Your litter vas successfully posted!";
-					}
+				if($pic)
+				{
+					dbAdd("INSERT INTO litter_posts (user_id, post, post_pic)
+						VALUES('$user_id', '$post', '$pic_name')");
+
+					print "Your litter vas successfully posted!";
+				}
 				else
 				{
 					print "Your picture was not in a correct IMG-format...";
@@ -134,6 +135,7 @@ function deletePost()
 	}
 }
 
+
 function deleteComment()
 {
 	$sess_user = $_SESSION['user_id'];
@@ -148,6 +150,7 @@ function deleteComment()
 		return "Your comment was successfully trashed!";
 	}
 }
+
 
 function recycle()
 {

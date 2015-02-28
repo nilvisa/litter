@@ -24,6 +24,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			print changeInfo();
 		}
+		if(isset($_POST['del_user']))
+		{
+			deleteUser();
+		}
 		if(isset($_POST['del_post']))
 		{
 			print deletePost();
