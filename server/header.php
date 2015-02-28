@@ -1,7 +1,7 @@
 <?php
-require_once('funcs.php');
-require_once('profile_funcs.php');
-require_once('post_funcs.php');
+require_once('server/funcs.php');
+require_once('server/profile_funcs.php');
+require_once('server/post_funcs.php');
 
 /* CHECK SESSION */
 session_start();
@@ -37,10 +37,11 @@ $post = getAllPosts();
 $profile = 'all';
 $fulltag = '';
 
+
 /* WHICH POSTS TO SHOW*/
 if(isset($_GET['profile']))
 {
-	$profile = preg_replace("/[^a-zA-Z0-9@#]/","",$_GET['profile']);
+	$profile = ($_GET['profile']);
 
 	if($profile == 'all')
 	{
@@ -80,9 +81,9 @@ if(isset($_GET['tag']))
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width" />
 	<title>Litter</title>
-	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href="css/mobile.css" rel="stylesheet" type="text/css">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 </head>
 <body>
 
@@ -100,6 +101,7 @@ if(isset($_GET['tag']))
 	<div id="search_form">
 		<form method="GET" action="profile.php">
 			<input type="text" name="profile" placeholder="Find @">
+			<!-- <button type="submit" class="button">Find user</button> -->
 		</form>
 	</div>
 

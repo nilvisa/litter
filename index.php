@@ -1,6 +1,6 @@
 <?php
 
-include('header.php');
+require_once('server/header.php');
 
 ?>
 
@@ -27,30 +27,32 @@ include('header.php');
 <?php
 
 print '<div id="whos_online">';
-	$online = whosOnline();
+	$online = getAllUsers();
 
 	print "<h3>Who's here now:</h3>";
 
 	print '<div id="online_img">';
 
-			if(count($online) == 1)
+			print '<div id="online_container">';
+			foreach($online as $online)
 			{
-				print "It's only you here...";
-			}
-			else
-			{
-				print '<div id="online_container">';
-				foreach($online as $online)
+				if($online['user_id'] !== $sess['user_id'])
 				{
-					if($online['user_id'] !== $sess['user_id'])
+					if($online['active'] == 1)
 					{
 						print '<div class="whos_online">';
 						print '<a href="profile.php?profile='.$online['username'].'" title="'.$online['username'].'">'.getProfilePic($online['user_id'], '50px').'</a>';
 						print '</div>';
-					}		
-				}
-				print '</div>';
+					}
+					else
+					{
+						print '<div class="whos_online">';
+						print '<a href="profile.php?profile='.$online['username'].'" title="'.$online['username'].'">'.getProfilePic($online['user_id'], '50px" class="grey').'</a>';
+						print '</div>';
+					}
+				}		
 			}
+			print '</div>';
 		print '</div>';
 	print '</div>';
 
@@ -68,6 +70,6 @@ print '<div id="wrapper">';
 
 print '</div>';
 
-include('footer.php');
+require_once('footer.php');
 
 ?>

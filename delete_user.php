@@ -1,6 +1,6 @@
 <?php
 
-include('header.php');
+require_once('server/header.php');
 
 ?>
 
@@ -22,6 +22,6 @@ include('header.php');
 
 print_r(deleteUser());
 
-include('footer.php')
+require_once('footer.php')
 
 ?>

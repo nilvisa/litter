@@ -35,6 +35,45 @@ function dbRow($sql)
 
 }
 
+function dbOneArray($sql)
+{
+	$connect = dbConnect();
+	$query = mysqli_query($connect, $sql);
+
+	$array = [];
+	$result = "";
+
+	if($query)
+	{
+		while($row = mysqli_fetch_assoc($query))
+		{
+			if(!empty($row))
+			{
+				$array[] = $row;
+			}
+		}
+
+		foreach($array as $key => $value)
+		{
+			foreach($value as $core)
+			{
+				$result[] = $core;
+			}
+		}		
+		return $result;
+
+		mysqli_free_result($query);
+		mysqli_close($connect);
+	}
+
+	else 
+	{
+		print 'Not connecting to the database!';
+		exit;
+	}
+
+}
+
 function dbArray($sql)
 {
 	$connect = dbConnect();

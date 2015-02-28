@@ -165,7 +165,16 @@ function deleteUser()
 						WHERE reply = '$post_id' AND user_id = '$user_id'");
 				}
 			}
-		}		
+		}
+
+		/* CLEAN FOLLOWING */
+		dbAdd("DELETE FROM litter_following
+			WHERE user_id = '$sess_id'");
+
+		/* CLEAN FOLLOWERS */
+		dbAdd("DELETE FROM litter_following
+			WHERE following = '$sess_id'");
+
 
 		/* CLEAN FOLDER */
 		$dir = 'userIMG/'.$sess_id.'/'; 
@@ -189,7 +198,7 @@ function deleteUser()
 		/* DEL USER */
 		dbAdd("DELETE FROM litter_users
 		WHERE user_id = '$sess_id' AND username = '$sess_username'");
-		
+
 		session_destroy();
 		session_start();
 		$_SESSION['error'] = 'Your account has been deleted...';
@@ -224,15 +233,19 @@ function follow()
 function getFollowing($user_id)
 {
 	return dbArray("SELECT * FROM litter_following
-		WHERE user_id = '$user_id'
-		ORDER BY time_stamp DESC");
+		INNER JOIN litter_users
+		ON litter_following.following = litter_users.user_id
+		WHERE litter_following.user_id = '$user_id'
+		ORDER BY litter_following.time_stamp DESC");
 }
 
 function getFollowers($user_id)
 {
 	return dbArray("SELECT * FROM litter_following
-		WHERE following = '$user_id'
-		ORDER BY time_stamp DESC");
+		INNER JOIN litter_users
+		ON litter_following.user_id = litter_users.user_id
+		WHERE litter_following.following = '$user_id'
+		ORDER BY litter_following.time_stamp DESC");
 }
 
 function checkFollowing($user_id, $following)
@@ -243,6 +256,25 @@ function checkFollowing($user_id, $following)
 	if($result)
 	{
 		return true;
+	}
+}
+
+function getFollowingPosts()
+{
+	$id = $_SESSION['user_id'];
+
+	$result = dbOneArray("SELECT following FROM litter_following
+					WHERE user_id = '$id'");
+
+	if($result)
+	{		
+		$following = implode(',',$result);
+
+		return dbArray("SELECT * FROM litter_posts
+			INNER JOIN litter_users
+			ON litter_posts.user_id = litter_users.user_id
+			WHERE litter_posts.user_id IN ($following)
+			ORDER BY litter_posts.time_stamp DESC");
 	}
 }
 

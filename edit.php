@@ -1,6 +1,6 @@
 <?php
 
-include('header.php');
+require_once('server/header.php');
 
 ?>
 
@@ -57,6 +57,6 @@ include('header.php');
 
 <?php
 
-include('footer.php');
+require_once('footer.php');
 
 ?>

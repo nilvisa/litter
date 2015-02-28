@@ -1,6 +1,6 @@
 <?php
 
-include('header.php');
+require_once('server/header.php');
 
 ?>
 
@@ -64,15 +64,72 @@ include('header.php');
 						</form>';
 				}
 			}
-			print '<p>Following: '.count($following).'</p>';
-			print '<p>Followers: '.count($followers).'</p>';
 
-			// print '<div>';
-			// 	require_once('following.php');
-			// print '</div>';
+			if($sess['user_id'] == $get['user_id'])
+			{
+				print '<p><a href="following.php">Following: '.count($following).'</a></p>';
+			}
+			else
+			{					
+				print '<p id="following">Following: '.count($following).'</p>';
+			
 
+				print '<div class="following">';
+					print '<div id="online_img">';
 
+					$following = getFollowing($get['user_id']);
 
+					if(count($following) == 0)
+					{
+						print "None, go follow someone!";
+					}
+					else
+					{
+						print '<div id="online_container">';
+						foreach($following as $following)
+						{			
+							print '<div class="whos_online">';
+							print '<a href="profile.php?profile='.$following['username'].'" title="'.$following['username'].'">'
+							.getProfilePic($following['following'], '50px').'</a>';
+							print '</div>';		
+						}
+						print '</div>';
+					}
+					print '</div>';
+
+				print '</div>';
+
+			}
+
+			print '<p id="followers">Followers: '.count($followers).'</p>';	
+
+				print '<div class="followers">';
+					print '<div id="online_img">';
+
+					$following = getFollowers($get['user_id']);
+
+					if(count($following) == 0)
+					{
+						print "None, go follow someone!";
+					}
+					else
+					{
+						print '<div id="online_container">';
+						foreach($following as $following)
+						{			
+							print '<div class="whos_online">';
+							print '<a href="profile.php?profile='.$following['username'].'" title="'.$following['username'].'">'
+							.getProfilePic($following['user_id'], '50px').'</a>';
+							print '</div>';		
+						}
+						print '</div>';
+					}
+					print '</div>';
+
+				print '</div>';
+
+					
+			
 			if($sess['user_id'] == $get ['user_id'])
 			{
 				print '<br><a href="profile.php?profile=at'.$sess['username'].'">See where you have been mentioned</a><br>';
@@ -102,6 +159,6 @@ include('header.php');
 			}			
 		print '</div>';
 
-include('footer.php');
+require_once('footer.php');
 
 ?>

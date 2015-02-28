@@ -40,7 +40,19 @@ $(document).ready(function(){
 	});
 
 
+/* SHOW/HIDE FOLLOWERS*/
 
+$(document).ready(function(){
+
+	$('#following').click(function(){
+	$('.following').toggle(400);
+	});
+
+	$('#followers').click(function(){
+	$('.followers').toggle(400);
+	});
+
+});	
 
 
 /* SCROLL */
@@ -60,3 +72,5 @@ $(document).ready(function(){
 		return false;
 	});	
 });
+
+

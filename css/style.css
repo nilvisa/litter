@@ -88,7 +88,7 @@ button {
 	-webkit-appearance: none;
 }
 
-a, a:hover, button, button:hover, .button, .button:hover {
+a, a:hover, button, button:hover, .button, .button:hover, .following, .followers{
 	-webkit-transition: 0.2s ease-in-out;
     -moz-transition: 0.2s ease-in-out;
     -ms-transition: 0.2s ease-in-out;
@@ -319,7 +319,6 @@ div.fileinputs input.file {
 	width: 50px;
 	height: 50px;
 	overflow: hidden;
-	/*float: right;*/
 	margin: 5px;
 	display: inline-block;
 }
@@ -333,16 +332,15 @@ div.fileinputs input.file {
 		-ms-transform: translate(-50%,-50%);
 		transform: translate(-50%,-50%);
 	}
+.grey {
+	opacity: 0.3;
+}
 
 
 #wrapper{
 	width: 450px;
 	margin: 0px auto;
 }	
-	div#wrapper h2 {
-		text-align: center;
-		margin: auto;
-	}
 
 
 /* POST */
@@ -553,7 +551,7 @@ div.postit {
 	position: fixed;
 	top: 80px;
 	right: 30px;
-	width: 400px;
+	width: 300px;
 	text-align: right;
 }
 	div#profile h2 {
@@ -586,13 +584,24 @@ div.postit {
 		color: #fff;
 	}
 
-#bg{
-	position: relative;
-	width: 400px;
-	height: 200px;
-	background-size: 100%;
-	background-repeat: no-repeat;
+div.following, div.followers {
+	display: none;
 }
+
+.following #online_img, .followers #online_img {
+	overflow: scroll;
+	text-align: left;
+	overflow-y: hidden;
+}
+
+.following #online_container, .followers #online_container {
+	width: 10000px;
+}
+
+#following:hover, #followers:hover {
+	color: #fff;
+}
+
 
 
 /* EDIT-PAGE */
@@ -679,3 +688,13 @@ div.postit {
 		width: 250px;
 		float: left;
 	}
+
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: none; }
+::-webkit-scrollbar-track {  background-color: none;}
+::-webkit-scrollbar-track-piece { background-color: none;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #fff; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: none;}
+::-webkit-resizer { background-color: none;}

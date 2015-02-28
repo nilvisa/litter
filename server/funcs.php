@@ -22,6 +22,12 @@ function getUser($username)
 		WHERE username = '$username'");
 }
 
+function getAllUsers()
+{
+	return dbArray("SELECT * FROM litter_users
+				ORDER BY active DESC");
+}
+
 function getSessionUser($user, $user_id)
 {
 	return dbRow("SELECT * FROM litter_users
@@ -163,11 +169,7 @@ function printTime($time_stamp)
 
 }
 
-function whosOnline()
-{
-	return dbArray("SELECT * FROM litter_users
-		WHERE active = 1");
-}
+
 
 
 
